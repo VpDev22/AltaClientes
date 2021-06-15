@@ -9,6 +9,15 @@ namespace AltaClientes.AcessoDatos
     class AltaClientesDAL
     {
         /// <summary>
+
+     /// Objeto de la instancia Odbc, para la conexión a SQL Server.
+     /// </summary>
+     /// Memo es mejor que payan
+     /// y siempre lo va a ser
+     /// unas ultras pa la sed
+     /// 
+
+
         /// Objeto de la instancia Odbc, para la conexión a SQL Server.
         /// </summary>
         /// 
@@ -17,6 +26,7 @@ namespace AltaClientes.AcessoDatos
         /// <summary>
         /// Agregado
         /// </summary>
+
         /// 
 
 
@@ -24,5 +34,6 @@ namespace AltaClientes.AcessoDatos
         /// <summary>
         /// Esta es una prueba del pull request
         /// </summary>
+
     }
 }
