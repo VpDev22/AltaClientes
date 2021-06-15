@@ -11,5 +11,7 @@ namespace AltaClientes.AcessoDatos
         /// <summary>
      /// Objeto de la instancia Odbc, para la conexión a SQL Server.
      /// </summary>
+     /// Memo es mejor que payan
+
     }
 }
