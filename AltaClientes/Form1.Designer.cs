@@ -34,20 +34,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.btnAlta = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtDomicilio = new System.Windows.Forms.TextBox();
             this.txtNumCasa = new System.Windows.Forms.TextBox();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.dtpFechaRegistro = new System.Windows.Forms.DateTimePicker();
-            this.dtpFechaModificacion = new System.Windows.Forms.DateTimePicker();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnBaja = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -108,58 +103,33 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "N. Interior:";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(56, 216);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(137, 20);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Fecha de registro:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 252);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(172, 20);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Fecha de modificación:";
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(126, 282);
+            this.label9.Location = new System.Drawing.Point(126, 222);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(0, 20);
             this.label9.TabIndex = 8;
             // 
-            // btnAlta
+            // btnGuardar
             // 
-            this.btnAlta.Location = new System.Drawing.Point(66, 332);
-            this.btnAlta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAlta.Name = "btnAlta";
-            this.btnAlta.Size = new System.Drawing.Size(86, 40);
-            this.btnAlta.TabIndex = 9;
-            this.btnAlta.Text = "Alta";
-            this.btnAlta.UseVisualStyleBackColor = true;
+            this.btnGuardar.Location = new System.Drawing.Point(44, 272);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(107, 40);
+            this.btnGuardar.TabIndex = 9;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(173, 332);
+            this.btnModificar.Location = new System.Drawing.Point(157, 272);
             this.btnModificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(94, 40);
+            this.btnModificar.Size = new System.Drawing.Size(107, 40);
             this.btnModificar.TabIndex = 10;
-            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Text = "Actualizar";
             this.btnModificar.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(0, 0);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 24;
             // 
             // txtCodigo
             // 
@@ -209,44 +179,28 @@
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(289, 26);
             this.dtpFechaNacimiento.TabIndex = 18;
             // 
-            // dtpFechaRegistro
-            // 
-            this.dtpFechaRegistro.Location = new System.Drawing.Point(200, 216);
-            this.dtpFechaRegistro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaRegistro.Name = "dtpFechaRegistro";
-            this.dtpFechaRegistro.Size = new System.Drawing.Size(289, 26);
-            this.dtpFechaRegistro.TabIndex = 19;
-            // 
-            // dtpFechaModificacion
-            // 
-            this.dtpFechaModificacion.Location = new System.Drawing.Point(200, 248);
-            this.dtpFechaModificacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaModificacion.Name = "dtpFechaModificacion";
-            this.dtpFechaModificacion.Size = new System.Drawing.Size(289, 26);
-            this.dtpFechaModificacion.TabIndex = 20;
-            // 
             // lblMensaje
             // 
-            this.lblMensaje.Location = new System.Drawing.Point(197, 285);
+            this.lblMensaje.Location = new System.Drawing.Point(125, 232);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(162, 29);
+            this.lblMensaje.Size = new System.Drawing.Size(185, 29);
             this.lblMensaje.TabIndex = 21;
-            this.lblMensaje.Text = "Cliente dado de baja";
+            this.lblMensaje.Text = "Mensaje";
             this.lblMensaje.Visible = false;
             // 
             // btnBaja
             // 
-            this.btnBaja.Location = new System.Drawing.Point(291, 332);
+            this.btnBaja.Location = new System.Drawing.Point(270, 272);
             this.btnBaja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBaja.Name = "btnBaja";
-            this.btnBaja.Size = new System.Drawing.Size(86, 40);
+            this.btnBaja.Size = new System.Drawing.Size(107, 40);
             this.btnBaja.TabIndex = 22;
-            this.btnBaja.Text = "Baja";
+            this.btnBaja.Text = "Deshabilitar";
             this.btnBaja.UseVisualStyleBackColor = true;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(403, 282);
+            this.btnLimpiar.Location = new System.Drawing.Point(403, 222);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(86, 40);
@@ -256,7 +210,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(403, 332);
+            this.btnSalir.Location = new System.Drawing.Point(403, 272);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(86, 40);
@@ -269,26 +223,21 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 397);
+            this.ClientSize = new System.Drawing.Size(513, 338);
             this.ControlBox = false;
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.lblMensaje);
-            this.Controls.Add(this.dtpFechaModificacion);
-            this.Controls.Add(this.dtpFechaRegistro);
             this.Controls.Add(this.dtpFechaNacimiento);
             this.Controls.Add(this.txtNumCasa);
             this.Controls.Add(this.txtDomicilio);
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtCodigo);
-            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.btnAlta);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -311,20 +260,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnAlta;
+        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtDomicilio;
         private System.Windows.Forms.TextBox txtNumCasa;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
-        private System.Windows.Forms.DateTimePicker dtpFechaRegistro;
-        private System.Windows.Forms.DateTimePicker dtpFechaModificacion;
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnBaja;
         private System.Windows.Forms.Button btnLimpiar;
