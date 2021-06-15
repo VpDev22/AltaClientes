@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace AltaClientes
 {
-    public partial class Form1 : Form
+    public partial class frmAltaClientes : Form
     {
-        public Form1()
+        public frmAltaClientes()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+
         }
     }
 }
