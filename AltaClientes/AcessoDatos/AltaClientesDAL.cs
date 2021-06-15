@@ -9,7 +9,13 @@ namespace AltaClientes.AcessoDatos
     class AltaClientesDAL
     {
         /// <summary>
-     /// Objeto de la instancia Odbc, para la conexión a SQL Server.
-     /// </summary>
+        /// Objeto de la instancia Odbc, para la conexión a SQL Server.
+        /// </summary>
+        /// 
+
+
+        /// <summary>
+        /// Agregado
+        /// </summary>
     }
 }
