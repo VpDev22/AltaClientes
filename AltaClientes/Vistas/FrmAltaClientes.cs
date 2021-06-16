@@ -27,5 +27,17 @@ namespace AltaClientes
             Application.Exit();
 
         }
+        private void Limpiar()
+        {
+            txtCodigo.Clear();
+            txtDomicilio.Clear();
+            txtNombre.Clear();
+            txtNumCasa.Clear();
+            txtTelefono.Clear();
+        }
+        private void frmAltaClientes_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
