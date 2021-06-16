@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcessoDatos\AltaClientesDAL.cs" />
+    <Compile Include="Clases\AccesoSqlServer.cs" />
+    <Compile Include="Clases\Extensores.cs" />
     <Compile Include="Modelos\AltaClientesViewModel.cs" />
     <Compile Include="Vistas\FrmAltaClientes.cs">
       <SubType>Form</SubType>
