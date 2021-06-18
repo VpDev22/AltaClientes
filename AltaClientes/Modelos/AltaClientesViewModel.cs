@@ -10,13 +10,14 @@ using AltaClientes.Modelos;
 using AltaClientes.Properties;
 using AltaClientes.AcessoDatos;
 
+
 namespace AltaClientes.Modelos
 {
     class AltaClientesViewModel
     {
         #region Elementos
 
-        private AltaClientesDAL asignarClienteDAL;
+        private AltaClientesDAL altaclientesDAL;
 
         #endregion Elementos
 
@@ -27,7 +28,7 @@ namespace AltaClientes.Modelos
         /// </summary>
         public AltaClientesViewModel()
         {
-            asignarClienteDAL = new AltaClientesDAL();
+            altaclientesDAL = new AltaClientesDAL();
         }
 
         #endregion Constructor
@@ -38,9 +39,31 @@ namespace AltaClientes.Modelos
         {
             DataTable dtUsuarios;
 
-            dtUsuarios = asignarClienteDAL.ConsultarUsuarios();
+            dtUsuarios = altaclientesDAL.ConsultarUsuarios();
 
             return dtUsuarios;
+        }
+        
+        public Boolean GuardarCliente(int num, string nombre, int telefono, string fechanac, string domicilio, int numeroint)
+        {
+            Boolean resultado = false;
+
+            resultado = altaclientesDAL.GuardarCliente(num, nombre, telefono, fechanac, domicilio, numeroint);
+            return resultado;
+        }
+        public Boolean ModificarCliente(int num, string nombre, int telefono, string fechanac, string domicilio, int numeroint)
+        {
+            Boolean resultado = false;
+
+            resultado = altaclientesDAL.ActualizarCliente(num, nombre, telefono, fechanac, domicilio, numeroint);
+            return resultado;
+        }
+        public Boolean DeshabilitarCliente(int codigo)
+        {
+            Boolean resultado = false;
+
+            resultado = altaclientesDAL.DeshabilitaCliente(codigo);
+            return resultado;
         }
         #endregion Métodos públicos   
     }

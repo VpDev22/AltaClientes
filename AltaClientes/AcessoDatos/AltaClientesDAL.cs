@@ -27,7 +27,7 @@ namespace AltaClientes.AcessoDatos
         /// <summary>
         /// Constructor para instanciar el objeto odbc con la cadena de conexión a SQL Server. 
         /// </summary>
-        public void AsignarClienteDAL()
+        public AltaClientesDAL()
         {
             accesoSqlServer = new AccesoSqlServer(Program.CadenaConexionSqlServer);
         }
@@ -79,6 +79,128 @@ namespace AltaClientes.AcessoDatos
             return dtUsuarios;
         }
 
+        /// <summary>
+        /// Método para agregar un usuario a la Base de Datos.
+        /// </summary>
+        /// <param name="u">Entidad usuario con los datos a guardar</param>
+        /// <returns>Regresa true si guardó el registro, false si ocurrió un error.</returns>
+        public Boolean GuardarCliente(int num, string nombre, int telefono, string fechanac,string domicilio, int numeroint )
+        {
+            Boolean resultado = false;
+            string query = String.Empty;
+
+            try
+            {
+                if (accesoSqlServer.Open())
+                {
+                    query = String.Format($"EXEC prueba.dbo.proc_GuardarClientes @numCliente = {num} ," +
+                                        $" @nomCliente = '{nombre}', @telefono = '{telefono}',@fechaNac = '{fechanac}', @domicilio = '{domicilio}', @interior ='{numeroint}'");
+                    
+                    resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al guardar usuario",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                //Error.Guardar(accesoSqlServer.SqlConexion,
+                //              "MAPER001",
+                //              "AsignarUsuarioDAL",
+                //              "GuardarUsuario",
+                //              "proc_MaPer001GuardarUsuarios",
+                //              "0",
+                //              ex.Message);
+            }
+            finally
+            {
+                accesoSqlServer.Close();
+            }
+
+            return resultado;
+
+        }
+        public Boolean ActualizarCliente(int codigo, string nombre, int telefono, string fechanac, string domicilio, int numeroint)
+        {
+            Boolean resultado = false;
+            string query = String.Empty;
+
+            try
+            {
+                if (accesoSqlServer.Open())
+                {
+                    query = String.Format($"EXEC prueba.dbo.proc_ActualizarClientes @codigo = {codigo} ," +
+                                        $" @nombrecliente = '{nombre}', @telefono = '{telefono}',@fechanacimiento = '{fechanac}', @domicilio = '{domicilio}', @numinterior ='{numeroint}'");
+                    
+                    resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar usuario",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                //Error.Guardar(accesoSqlServer.SqlConexion,
+                //              "MAPER001",
+                //              "AsignarUsuarioDAL",
+                //              "GuardarUsuario",
+                //              "proc_MaPer001GuardarUsuarios",
+                //              "0",
+                //              ex.Message);
+            }
+            finally
+            {
+                accesoSqlServer.Close();
+            }
+
+            return resultado;
+
+        }
+        public Boolean DeshabilitaCliente(int codigo)
+        {
+            Boolean resultado = false;
+            string query = String.Empty;
+
+            try
+            {
+                if (accesoSqlServer.Open())
+                {
+                    query = String.Format($"EXEC prueba.dbo.proc_DeshabilitarClientes @codigo = {codigo}");
+
+                    resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al deshabilitar usuario",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                //Error.Guardar(accesoSqlServer.SqlConexion,
+                //              "MAPER001",
+                //              "AsignarUsuarioDAL",
+                //              "GuardarUsuario",
+                //              "proc_MaPer001GuardarUsuarios",
+                //              "0",
+                //              ex.Message);
+            }
+            finally
+            {
+                accesoSqlServer.Close();
+            }
+
+            return resultado;
+
+        }
 
 
 
