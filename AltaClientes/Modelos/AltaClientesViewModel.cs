@@ -39,7 +39,7 @@ namespace AltaClientes.Modelos
         {
             DataTable dtUsuarios;
 
-            dtUsuarios = altaclientesDAL.ConsultarUsuarios();
+            dtUsuarios = altaclientesDAL.CargarClientes();
 
             return dtUsuarios;
         }
@@ -51,20 +51,20 @@ namespace AltaClientes.Modelos
             resultado = altaclientesDAL.GuardarCliente(num, nombre, telefono, fechanac, domicilio, numeroint);
             return resultado;
         }
-        public Boolean ModificarCliente(int num, string nombre, int telefono, string fechanac, string domicilio, int numeroint)
-        {
-            Boolean resultado = false;
+        //public Boolean ModificarCliente(int num, string nombre, int telefono, string fechanac, string domicilio, int numeroint)
+        //{
+        //    Boolean resultado = false;
 
-            resultado = altaclientesDAL.ActualizarCliente(num, nombre, telefono, fechanac, domicilio, numeroint);
-            return resultado;
-        }
-        public Boolean DeshabilitarCliente(int codigo)
-        {
-            Boolean resultado = false;
+        //    resultado = altaclientesDAL.ActualizarCliente(num, nombre, telefono, fechanac, domicilio, numeroint);
+        //    return resultado;
+        //}
+        //public Boolean DeshabilitarCliente(int codigo)
+        //{
+        //    Boolean resultado = false;
 
-            resultado = altaclientesDAL.DeshabilitaCliente(codigo);
-            return resultado;
-        }
+        //    resultado = altaclientesDAL.DeshabilitaCliente(codigo);
+        //    return resultado;
+        //}
         #endregion Métodos públicos   
     }
 }

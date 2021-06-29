@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -75,86 +76,74 @@ namespace AltaClientes
                     MessageBox.Show(ex.Message, "No se pudo guardar");
                     
                 }
-                
-                
-                   
-
                 //}
             }
         }
-        private void Actualizar()
-        {
-            //if (ValidaTodosLosCampos(Controles.TODOS))
-            //{
-            if (MessageBox.Show("¿Desea actualizar al usuario?",
-                "Modificar",
-                MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
+        //private void Actualizar()
+        //{
+        //    //if (ValidaTodosLosCampos(Controles.TODOS))
+        //    //{
+        //    if (MessageBox.Show("¿Desea actualizar al usuario?",
+        //        "Modificar",
+        //        MessageBoxButtons.YesNo) == DialogResult.Yes)
+        //    {
 
-                int num = int.Parse(txtCodigo.Text);
-                string nombre = txtNombre.Text;
-                int telefono = int.Parse(txtTelefono.Text);
-                string fechanac = dtpFechaNacimiento.Value.ToString("yyyy/MM/dd");
-                string domicilio = txtDomicilio.Text;
-                int numinterior = int.Parse(txtNumCasa.Text);
+        //        int num = int.Parse(txtCodigo.Text);
+        //        string nombre = txtNombre.Text;
+        //        int telefono = int.Parse(txtTelefono.Text);
+        //        string fechanac = dtpFechaNacimiento.Value.ToString("yyyy/MM/dd");
+        //        string domicilio = txtDomicilio.Text;
+        //        int numinterior = int.Parse(txtNumCasa.Text);
 
-                try
-                {
-                    if (altaclientesviewmodel.ModificarCliente(num, nombre, telefono, fechanac, domicilio, numinterior))
-                    {
-                        MessageBox.Show("Se modificó correctamente el usuario",
-                                    "Modificar",
-                                    MessageBoxButtons.OK);
-                        Limpiar();
-                        //CargaCombos();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "No se pudo Modificar");
+        //        try
+        //        {
+        //            if (altaclientesviewmodel.ModificarCliente(num, nombre, telefono, fechanac, domicilio, numinterior))
+        //            {
+        //                MessageBox.Show("Se modificó correctamente el usuario",
+        //                            "Modificar",
+        //                            MessageBoxButtons.OK);
+        //                Limpiar();
+        //                //CargaCombos();
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message, "No se pudo Modificar");
 
-                }
+        //        }
+        //        //}
+        //    }
+        //}
+        //private void Deshabilita()
+        //{
+        //    //if (ValidaTodosLosCampos(Controles.TODOS))
+        //    //{
+        //    if (MessageBox.Show("¿Desea deshabilitar al usuario?",
+        //        "Deshabilitar",
+        //        MessageBoxButtons.YesNo) == DialogResult.Yes)
+        //    {
 
-
-
-
-                //}
-            }
-        }
-        private void Deshabilita()
-        {
-            //if (ValidaTodosLosCampos(Controles.TODOS))
-            //{
-            if (MessageBox.Show("¿Desea deshabilitar al usuario?",
-                "Deshabilitar",
-                MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-
-                int codigo = int.Parse(txtCodigo.Text);
+        //        int codigo = int.Parse(txtCodigo.Text);
                 
-                try
-                {
-                    if (altaclientesviewmodel.DeshabilitarCliente(codigo))
-                    {
-                        MessageBox.Show("Se deshabilitó correctamente el usuario",
-                                    "Modificar",
-                                    MessageBoxButtons.OK);
-                        Limpiar();
-                        //CargaCombos();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "No se pudo deshabilitar");
+        //        try
+        //        {
+        //            if (altaclientesviewmodel.DeshabilitarCliente(codigo))
+        //            {
+        //                MessageBox.Show("Se deshabilitó correctamente el usuario",
+        //                            "Modificar",
+        //                            MessageBoxButtons.OK);
+        //                Limpiar();
+        //                //CargaCombos();
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message, "No se pudo deshabilitar");
 
-                }
-
-
-
-
-                //}
-            }
-        }
+        //        }
+        //        //}
+        //    }
+        //}
         private void frmAltaClientes_Load(object sender, EventArgs e)
         {
             altaclientesviewmodel = new AltaClientesViewModel();
@@ -165,14 +154,70 @@ namespace AltaClientes
             Guardar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            Actualizar();
+        
+
+       
+
+          private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+          {
+            //if (e.KeyChar == 13)
+            //    try
+            //    {
+            //        SqlConnection cnn = new SqlConnection(Program.CadenaConexionSqlServer);
+            //        SqlCommand comando = new SqlCommand("select * from cat_clientes where num_cliente=" + txtCodigo.Text, cnn);
+            //        cnn.Open();
+            //        SqlDataReader myReader = comando.ExecuteReader();
+            //        comando.Dispose();
+            //        //Habilita();
+            //        if (myReader.HasRows)
+            //        {
+            //            while (myReader.Read())
+            //            {
+            //                txtNombre.Text = myReader.GetValue(1).ToString();
+            //                txtTelefono.Text = myReader.GetValue(2).ToString();
+            //                dtpFechaNacimiento.Text = myReader.GetValue(3).ToString();
+            //                txtDomicilio.Text = myReader.GetValue(4).ToString();
+            //                txtNumCasa.Text = myReader.GetValue(5).ToString();
+                           
+
+
+            //            }
+            //            //btnModificar.Enabled = true;
+            //            //btnEliminar.Enabled = true;
+            //            //btnGuardar.Enabled = false;
+            //            txtNombre.Focus();
+
+            //        }
+            //        else
+            //        {
+
+            //            //txtDescripcion.Focus();
+            //            //btnGuardar.Enabled = true;
+            //            //btnModificar.Enabled = false;
+            //            //btnEliminar.Enabled = false;
+
+            //        }
+            //        myReader.Close();
+            //        myReader.Dispose();
+            //        cnn.Close();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Error:" + ex.Message);
+            //    }
+            
         }
 
-        private void btnBaja_Click(object sender, EventArgs e)
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            Deshabilita();
+            Limpiar();
+               
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            FrmBuscar frmb = new FrmBuscar();
+            frmb.Show();
         }
     }
 }

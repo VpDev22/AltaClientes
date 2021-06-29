@@ -36,7 +36,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
@@ -44,9 +43,10 @@
             this.txtNumCasa = new System.Windows.Forms.TextBox();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.lblMensaje = new System.Windows.Forms.Label();
-            this.btnBaja = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -122,17 +122,6 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // btnModificar
-            // 
-            this.btnModificar.Location = new System.Drawing.Point(157, 272);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(107, 40);
-            this.btnModificar.TabIndex = 10;
-            this.btnModificar.Text = "Actualizar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
             // txtCodigo
             // 
             this.txtCodigo.Location = new System.Drawing.Point(200, 21);
@@ -140,13 +129,14 @@
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(100, 26);
             this.txtCodigo.TabIndex = 12;
+            this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(200, 52);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(250, 26);
+            this.txtNombre.Size = new System.Drawing.Size(225, 26);
             this.txtNombre.TabIndex = 13;
             // 
             // txtTelefono
@@ -184,33 +174,22 @@
             // 
             // lblMensaje
             // 
-            this.lblMensaje.Location = new System.Drawing.Point(125, 232);
+            this.lblMensaje.Location = new System.Drawing.Point(122, 223);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(185, 29);
+            this.lblMensaje.Size = new System.Drawing.Size(255, 29);
             this.lblMensaje.TabIndex = 21;
             this.lblMensaje.Text = "Mensaje";
-            this.lblMensaje.Visible = false;
-            // 
-            // btnBaja
-            // 
-            this.btnBaja.Location = new System.Drawing.Point(270, 272);
-            this.btnBaja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnBaja.Name = "btnBaja";
-            this.btnBaja.Size = new System.Drawing.Size(107, 40);
-            this.btnBaja.TabIndex = 22;
-            this.btnBaja.Text = "Deshabilitar";
-            this.btnBaja.UseVisualStyleBackColor = true;
-            this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(403, 222);
+            this.btnLimpiar.Location = new System.Drawing.Point(311, 272);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(86, 40);
             this.btnLimpiar.TabIndex = 23;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnSalir
             // 
@@ -223,15 +202,34 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(200, 222);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 28);
+            this.comboBox1.TabIndex = 26;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(431, 55);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(32, 26);
+            this.btnBuscar.TabIndex = 27;
+            this.btnBuscar.Text = "🔍";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // frmAltaClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(513, 338);
             this.ControlBox = false;
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.dtpFechaNacimiento);
             this.Controls.Add(this.txtNumCasa);
@@ -239,7 +237,6 @@
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtCodigo);
-            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
@@ -267,7 +264,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtTelefono;
@@ -275,9 +271,10 @@
         private System.Windows.Forms.TextBox txtNumCasa;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
         private System.Windows.Forms.Label lblMensaje;
-        private System.Windows.Forms.Button btnBaja;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }
 

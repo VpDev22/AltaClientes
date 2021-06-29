@@ -38,46 +38,46 @@ namespace AltaClientes.AcessoDatos
         /// Método para consultar los usuarios.
         /// </summary>
         /// <returns>Regresa un DataTable con la lista de usuarios.</returns>
-        public DataTable ConsultarUsuarios()
-        {
-            String query = String.Empty;
-            DataTable dtUsuarios;
+        //public DataTable ConsultarUsuarios(int codigo)
+        //{
+        //    String query = String.Empty;
+        //    DataTable dtUsuarios;
 
-            try
-            {
-                dtUsuarios = new DataTable();
-                query = "EXEC prueba.dbo.proc_BuscarDatosCliente @codigo = 0";
+        //    try
+        //    {
+        //        dtUsuarios = new DataTable();
+        //        query = $"EXEC prueba.dbo.proc_BuscarDatosCliente @codigo ={codigo}";
 
-                if (accesoSqlServer.Open())
-                {
-                    dtUsuarios = accesoSqlServer.ExecuteDataTable(query);
-                }
+        //        if (accesoSqlServer.Open())
+        //        {
+        //            dtUsuarios = accesoSqlServer.ExecuteDataTable(query);
+        //        }
 
 
-            }
-            catch (Exception ex)
-            {
-                dtUsuarios = null;
-                MessageBox.Show("Error al consultar usuarios",
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        dtUsuarios = null;
+        //        MessageBox.Show("Error al consultar usuarios",
+        //                        "Error",
+        //                        MessageBoxButtons.OK,
+        //                        MessageBoxIcon.Error);
 
-                //Error.Guardar(accesoSqlServer.SqlConexion,
-                //              "MAPER001",
-                //              "AsignarUsuarioDAL",
-                //              "ConsultarUsuarios",
-                //              "proc_MaPer001CargaCatalogos",
-                //              "0",
-                //              ex.Message);
-            }
-            finally
-            {
-                accesoSqlServer.Close();
-            }
+        //        //Error.Guardar(accesoSqlServer.SqlConexion,
+        //        //              "MAPER001",
+        //        //              "AsignarUsuarioDAL",
+        //        //              "ConsultarUsuarios",
+        //        //              "proc_MaPer001CargaCatalogos",
+        //        //              "0",
+        //        //              ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        accesoSqlServer.Close();
+        //    }
 
-            return dtUsuarios;
-        }
+        //    return dtUsuarios;
+        //}
 
         /// <summary>
         /// Método para agregar un usuario a la Base de Datos.
@@ -124,25 +124,105 @@ namespace AltaClientes.AcessoDatos
             return resultado;
 
         }
-        public Boolean ActualizarCliente(int codigo, string nombre, int telefono, string fechanac, string domicilio, int numeroint)
+        //public Boolean ActualizarCliente(int codigo, string nombre, int telefono, string fechanac, string domicilio, int numeroint)
+        //{
+        //    Boolean resultado = false;
+        //    string query = String.Empty;
+
+        //    try
+        //    {
+        //        if (accesoSqlServer.Open())
+        //        {
+        //            query = String.Format($"EXEC prueba.dbo.proc_ActualizarClientes @codigo = {codigo} ," +
+        //                                $" @nombrecliente = '{nombre}', @telefono = '{telefono}',@fechanacimiento = '{fechanac}', @domicilio = '{domicilio}', @numinterior ='{numeroint}'");
+
+        //            resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al actualizar usuario",
+        //                        "Error",
+        //                        MessageBoxButtons.OK,
+        //                        MessageBoxIcon.Error);
+
+        //        //Error.Guardar(accesoSqlServer.SqlConexion,
+        //        //              "MAPER001",
+        //        //              "AsignarUsuarioDAL",
+        //        //              "GuardarUsuario",
+        //        //              "proc_MaPer001GuardarUsuarios",
+        //        //              "0",
+        //        //              ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        accesoSqlServer.Close();
+        //    }
+
+        //    return resultado;
+
+        //}
+        //public Boolean DeshabilitaCliente(int codigo)
+        //{
+        //    Boolean resultado = false;
+        //    string query = String.Empty;
+
+        //    try
+        //    {
+        //        if (accesoSqlServer.Open())
+        //        {
+        //            query = String.Format($"EXEC prueba.dbo.proc_DeshabilitarClientes @codigo = {codigo}");
+
+        //            resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al deshabilitar usuario",
+        //                        "Error",
+        //                        MessageBoxButtons.OK,
+        //                        MessageBoxIcon.Error);
+
+        //        //Error.Guardar(accesoSqlServer.SqlConexion,
+        //        //              "MAPER001",
+        //        //              "AsignarUsuarioDAL",
+        //        //              "GuardarUsuario",
+        //        //              "proc_MaPer001GuardarUsuarios",
+        //        //              "0",
+        //        //              ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        accesoSqlServer.Close();
+        //    }
+
+        //    return resultado;
+
+        //}
+        public DataTable CargarClientes()
         {
-            Boolean resultado = false;
-            string query = String.Empty;
+            String query = String.Empty;
+            DataTable dtClientes;
 
             try
             {
+                dtClientes = new DataTable();
+                query = "EXEC prueba.dbo.proc_CargarClientes";
+
                 if (accesoSqlServer.Open())
                 {
-                    query = String.Format($"EXEC prueba.dbo.proc_ActualizarClientes @codigo = {codigo} ," +
-                                        $" @nombrecliente = '{nombre}', @telefono = '{telefono}',@fechanacimiento = '{fechanac}', @domicilio = '{domicilio}', @numinterior ='{numeroint}'");
-                    
-                    resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
+                    dtClientes = accesoSqlServer.ExecuteDataTable(query);
+
                 }
+
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar usuario",
+                dtClientes = null;
+                MessageBox.Show("Error al cargar clientes",
                                 "Error",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
@@ -150,8 +230,8 @@ namespace AltaClientes.AcessoDatos
                 //Error.Guardar(accesoSqlServer.SqlConexion,
                 //              "MAPER001",
                 //              "AsignarUsuarioDAL",
-                //              "GuardarUsuario",
-                //              "proc_MaPer001GuardarUsuarios",
+                //              "ConsultarRoles",
+                //              "proc_MaPer001CargaCatalogos",
                 //              "0",
                 //              ex.Message);
             }
@@ -160,48 +240,8 @@ namespace AltaClientes.AcessoDatos
                 accesoSqlServer.Close();
             }
 
-            return resultado;
-
+            return dtClientes;
         }
-        public Boolean DeshabilitaCliente(int codigo)
-        {
-            Boolean resultado = false;
-            string query = String.Empty;
-
-            try
-            {
-                if (accesoSqlServer.Open())
-                {
-                    query = String.Format($"EXEC prueba.dbo.proc_DeshabilitarClientes @codigo = {codigo}");
-
-                    resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al deshabilitar usuario",
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-
-                //Error.Guardar(accesoSqlServer.SqlConexion,
-                //              "MAPER001",
-                //              "AsignarUsuarioDAL",
-                //              "GuardarUsuario",
-                //              "proc_MaPer001GuardarUsuarios",
-                //              "0",
-                //              ex.Message);
-            }
-            finally
-            {
-                accesoSqlServer.Close();
-            }
-
-            return resultado;
-
-        }
-
 
 
 

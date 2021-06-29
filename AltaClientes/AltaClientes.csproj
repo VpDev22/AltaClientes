@@ -49,6 +49,12 @@
     <Compile Include="AcessoDatos\AltaClientesDAL.cs" />
     <Compile Include="Clases\AccesoSqlServer.cs" />
     <Compile Include="Clases\Extensores.cs" />
+    <Compile Include="FrmBuscar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBuscar.Designer.cs">
+      <DependentUpon>FrmBuscar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\AltaClientesViewModel.cs" />
     <Compile Include="Vistas\FrmAltaClientes.cs">
       <SubType>Form</SubType>
@@ -58,6 +64,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmBuscar.resx">
+      <DependentUpon>FrmBuscar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmAltaClientes.resx">
       <DependentUpon>FrmAltaClientes.cs</DependentUpon>
     </EmbeddedResource>
