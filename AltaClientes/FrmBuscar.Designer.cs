@@ -63,8 +63,9 @@
             // 
             this.txtBuscarNombre.Location = new System.Drawing.Point(206, 26);
             this.txtBuscarNombre.Name = "txtBuscarNombre";
-            this.txtBuscarNombre.Size = new System.Drawing.Size(100, 26);
+            this.txtBuscarNombre.Size = new System.Drawing.Size(226, 26);
             this.txtBuscarNombre.TabIndex = 6;
+            this.txtBuscarNombre.TextChanged += new System.EventHandler(this.txtBuscarNombre_TextChanged);
             // 
             // dgvDatosCliente
             // 
@@ -100,6 +101,7 @@
             this.dgvDatosCliente.RowTemplate.Height = 28;
             this.dgvDatosCliente.Size = new System.Drawing.Size(552, 312);
             this.dgvDatosCliente.TabIndex = 2;
+            this.dgvDatosCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCliente_CellContentClick);
             // 
             // btnAceptar
             // 
@@ -144,10 +146,11 @@
             // 
             // nom_cliente
             // 
-            this.nom_cliente.HeaderText = "Nombre Cliente";
+            this.nom_cliente.HeaderText = "Nombre";
             this.nom_cliente.Name = "nom_cliente";
             this.nom_cliente.ReadOnly = true;
             this.nom_cliente.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nom_cliente.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.nom_cliente.Width = 150;
             // 
             // domicilio

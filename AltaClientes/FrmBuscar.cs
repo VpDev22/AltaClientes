@@ -33,6 +33,10 @@ namespace AltaClientes
             {
                 this.Dispose();
             }
+            
+            
+
+           
         }
         #region Elementos
 
@@ -49,20 +53,20 @@ namespace AltaClientes
             {
                 foreach (DataRow dtRow in tabla.Rows)
                 {
-
+               
                     dgvDatosCliente.Rows.Add(dtRow["num_cliente"].ToString().ToUpper(),
                                                  dtRow["nom_cliente"].ToString().ToUpper(),
                                                  dtRow["domicilio"].ToString().ToUpper(),
                                                  dtRow["telefono"].ToString().ToUpper(),
                                                  dtRow["num_interior"].ToString().ToUpper(),
                                                  dtRow["fec_nacimiento"].ToString().ToUpper());
-                                                 
+
                     this.dgvDatosCliente.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                     this.dgvDatosCliente.MultiSelect = false;
 
-                    
-                       
 
+
+                    dgvDatosCliente.DataSource = tabla.DataSet;
                 }
 
                 resultado = true;
@@ -87,7 +91,7 @@ namespace AltaClientes
                 this.Dispose();
             }
         }
-        public void devuelveCodigo()
+        public void devuelveCliente()
         {
             DataGridViewRow dr;
             string codigo;
@@ -103,12 +107,9 @@ namespace AltaClientes
             nombre = dr.Cells[1].Value.ToString();
             domicilio = dr.Cells[2].Value.ToString();
             telefono = dr.Cells[3].Value.ToString();
-            fechan = dr.Cells[5].Value.ToString();
-            
+            fechan = dr.Cells[5].Value.ToString();     
             numinterior = dr.Cells[4].Value.ToString();
-            
-
-
+   
             this.codigo = codigo;
             this.nombre = nombre;
             this.telefon = telefono;
@@ -123,7 +124,17 @@ namespace AltaClientes
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            devuelveCodigo();
+            devuelveCliente();
+        }
+
+        private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
+        {
+             tabla.DefaultView.RowFilter = $"Nombre LIKE '{txtBuscarNombre.Text}%'";
+        }
+
+        private void dgvDatosCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //txtBuscarNombre.Text = dgvDatosCliente.CurrentRow.Cells["Nombre"].Value.ToString();
         }
     }
 }

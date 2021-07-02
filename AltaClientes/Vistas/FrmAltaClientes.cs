@@ -56,7 +56,7 @@ namespace AltaClientes
 
                     int num = int.Parse(txtCodigo.Text);
                     string nombre = txtNombre.Text;
-                    int telefono = int.Parse(txtTelefono.Text);
+                    string telefono = txtTelefono.Text;
                     string fechanac = dtpFechaNacimiento.Value.ToString("yyyy/MM/dd");
                     string domicilio = txtDomicilio.Text;
                     int numinterior = int.Parse(txtNumCasa.Text);
@@ -80,84 +80,16 @@ namespace AltaClientes
                 //}
             }
         }
-        //private void Actualizar()
-        //{
-        //    //if (ValidaTodosLosCampos(Controles.TODOS))
-        //    //{
-        //    if (MessageBox.Show("¿Desea actualizar al usuario?",
-        //        "Modificar",
-        //        MessageBoxButtons.YesNo) == DialogResult.Yes)
-        //    {
-
-        //        int num = int.Parse(txtCodigo.Text);
-        //        string nombre = txtNombre.Text;
-        //        int telefono = int.Parse(txtTelefono.Text);
-        //        string fechanac = dtpFechaNacimiento.Value.ToString("yyyy/MM/dd");
-        //        string domicilio = txtDomicilio.Text;
-        //        int numinterior = int.Parse(txtNumCasa.Text);
-
-        //        try
-        //        {
-        //            if (altaclientesviewmodel.ModificarCliente(num, nombre, telefono, fechanac, domicilio, numinterior))
-        //            {
-        //                MessageBox.Show("Se modificó correctamente el usuario",
-        //                            "Modificar",
-        //                            MessageBoxButtons.OK);
-        //                Limpiar();
-        //                //CargaCombos();
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message, "No se pudo Modificar");
-
-        //        }
-        //        //}
-        //    }
-        //}
-        //private void Deshabilita()
-        //{
-        //    //if (ValidaTodosLosCampos(Controles.TODOS))
-        //    //{
-        //    if (MessageBox.Show("¿Desea deshabilitar al usuario?",
-        //        "Deshabilitar",
-        //        MessageBoxButtons.YesNo) == DialogResult.Yes)
-        //    {
-
-        //        int codigo = int.Parse(txtCodigo.Text);
-                
-        //        try
-        //        {
-        //            if (altaclientesviewmodel.DeshabilitarCliente(codigo))
-        //            {
-        //                MessageBox.Show("Se deshabilitó correctamente el usuario",
-        //                            "Modificar",
-        //                            MessageBoxButtons.OK);
-        //                Limpiar();
-        //                //CargaCombos();
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message, "No se pudo deshabilitar");
-
-        //        }
-        //        //}
-        //    }
-        //}
+        
         private void frmAltaClientes_Load(object sender, EventArgs e)
         {
             altaclientesviewmodel = new AltaClientesViewModel();
- 
-
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Guardar();
         }
-
-
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
@@ -173,7 +105,6 @@ namespace AltaClientes
         
         public void buscar()
         {
-
             DataTable dtUsuarios;
 
             dtUsuarios = altaclientesviewmodel.ConsultarUsuarios();
@@ -199,9 +130,6 @@ namespace AltaClientes
                     this.txtTelefono.Text = tel;
                     this.txtNumCasa.Text = num;
                     this.dtpFechaNacimiento.Text = fec;
-
-
-
                 }
 
             }
