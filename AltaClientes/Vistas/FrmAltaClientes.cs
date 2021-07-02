@@ -17,6 +17,7 @@ namespace AltaClientes
 {
     public partial class frmAltaClientes : Form
     {
+        
         private AltaClientesViewModel altaclientesviewmodel;
         public frmAltaClientes()
         {
@@ -147,6 +148,8 @@ namespace AltaClientes
         private void frmAltaClientes_Load(object sender, EventArgs e)
         {
             altaclientesviewmodel = new AltaClientesViewModel();
+ 
+
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -154,12 +157,65 @@ namespace AltaClientes
             Guardar();
         }
 
+
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+               
+        }
         
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            buscar();
+            
+        }
+        
+        public void buscar()
+        {
 
-       
+            DataTable dtUsuarios;
 
-          private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
-          {
+            dtUsuarios = altaclientesviewmodel.ConsultarUsuarios();
+
+            if (dtUsuarios.Rows.Count > 0)
+            {
+                FrmBuscar frmBuscar = new FrmBuscar(dtUsuarios);
+
+                var resultado = frmBuscar.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    string cod = frmBuscar.codigo;
+                    string nom = frmBuscar.nombre;    
+                    string dom = frmBuscar.domicili;
+                    string tel = frmBuscar.telefon;
+                    string num = frmBuscar.numi;
+                    string fec = frmBuscar.fech;
+
+                    this.txtCodigo.Text = cod;
+                    this.txtNombre.Text = nom;
+                    this.txtDomicilio.Text = dom;
+                    this.txtTelefono.Text = tel;
+                    this.txtNumCasa.Text = num;
+                    this.dtpFechaNacimiento.Text = fec;
+
+
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron los datos"
+                            , "Error"
+                            , MessageBoxButtons.OK
+                            , MessageBoxIcon.Warning);
+            }
+        }
+
+        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
             //if (e.KeyChar == 13)
             //    try
             //    {
@@ -168,7 +224,7 @@ namespace AltaClientes
             //        cnn.Open();
             //        SqlDataReader myReader = comando.ExecuteReader();
             //        comando.Dispose();
-            //        //Habilita();
+                    
             //        if (myReader.HasRows)
             //        {
             //            while (myReader.Read())
@@ -178,24 +234,12 @@ namespace AltaClientes
             //                dtpFechaNacimiento.Text = myReader.GetValue(3).ToString();
             //                txtDomicilio.Text = myReader.GetValue(4).ToString();
             //                txtNumCasa.Text = myReader.GetValue(5).ToString();
-                           
-
-
             //            }
-            //            //btnModificar.Enabled = true;
-            //            //btnEliminar.Enabled = true;
-            //            //btnGuardar.Enabled = false;
-            //            txtNombre.Focus();
 
+            //            txtNombre.Focus();
             //        }
             //        else
             //        {
-
-            //            //txtDescripcion.Focus();
-            //            //btnGuardar.Enabled = true;
-            //            //btnModificar.Enabled = false;
-            //            //btnEliminar.Enabled = false;
-
             //        }
             //        myReader.Close();
             //        myReader.Dispose();
@@ -205,19 +249,6 @@ namespace AltaClientes
             //    {
             //        MessageBox.Show("Error:" + ex.Message);
             //    }
-            
-        }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            Limpiar();
-               
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            FrmBuscar frmb = new FrmBuscar();
-            frmb.Show();
         }
     }
 }

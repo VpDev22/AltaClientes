@@ -45,7 +45,7 @@
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboEstatus = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -81,9 +81,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(33, 120);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(161, 20);
+            this.label4.Size = new System.Drawing.Size(163, 20);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Fecha de nacimiento:";
+            this.label4.Text = "Fecha de Nacimiento:";
             // 
             // label5
             // 
@@ -113,7 +113,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(44, 272);
+            this.btnGuardar.Location = new System.Drawing.Point(198, 272);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(107, 40);
@@ -124,11 +124,10 @@
             // 
             // txtCodigo
             // 
-            this.txtCodigo.Location = new System.Drawing.Point(200, 21);
-            this.txtCodigo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCodigo.Location = new System.Drawing.Point(200, 18);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(100, 26);
-            this.txtCodigo.TabIndex = 12;
+            this.txtCodigo.TabIndex = 28;
             this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
             // txtNombre
@@ -141,7 +140,7 @@
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(200, 82);
+            this.txtTelefono.Location = new System.Drawing.Point(200, 85);
             this.txtTelefono.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(100, 26);
@@ -169,7 +168,7 @@
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(200, 115);
             this.dtpFechaNacimiento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            this.dtpFechaNacimiento.Size = new System.Drawing.Size(289, 26);
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(143, 26);
             this.dtpFechaNacimiento.TabIndex = 18;
             // 
             // lblMensaje
@@ -178,7 +177,7 @@
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(255, 29);
             this.lblMensaje.TabIndex = 21;
-            this.lblMensaje.Text = "Mensaje";
+            this.lblMensaje.Text = "Estatus:";
             // 
             // btnLimpiar
             // 
@@ -202,13 +201,13 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // comboBox1
+            // cboEstatus
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(200, 222);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 28);
-            this.comboBox1.TabIndex = 26;
+            this.cboEstatus.FormattingEnabled = true;
+            this.cboEstatus.Location = new System.Drawing.Point(200, 222);
+            this.cboEstatus.Name = "cboEstatus";
+            this.cboEstatus.Size = new System.Drawing.Size(121, 28);
+            this.cboEstatus.TabIndex = 26;
             // 
             // btnBuscar
             // 
@@ -224,10 +223,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 338);
+            this.ClientSize = new System.Drawing.Size(513, 334);
             this.ControlBox = false;
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cboEstatus);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblMensaje);
@@ -273,7 +272,7 @@
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboEstatus;
         private System.Windows.Forms.Button btnBuscar;
     }
 }

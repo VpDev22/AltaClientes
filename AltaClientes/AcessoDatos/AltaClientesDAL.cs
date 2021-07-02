@@ -204,16 +204,16 @@ namespace AltaClientes.AcessoDatos
         public DataTable CargarClientes()
         {
             String query = String.Empty;
-            DataTable dtClientes;
+            DataTable dtUsuarios;
 
             try
             {
-                dtClientes = new DataTable();
+                dtUsuarios = new DataTable();
                 query = "EXEC prueba.dbo.proc_CargarClientes";
 
                 if (accesoSqlServer.Open())
                 {
-                    dtClientes = accesoSqlServer.ExecuteDataTable(query);
+                    dtUsuarios = accesoSqlServer.ExecuteDataTable(query);
 
                 }
 
@@ -221,7 +221,7 @@ namespace AltaClientes.AcessoDatos
             }
             catch (Exception ex)
             {
-                dtClientes = null;
+                dtUsuarios = null;
                 MessageBox.Show("Error al cargar clientes",
                                 "Error",
                                 MessageBoxButtons.OK,
@@ -240,7 +240,7 @@ namespace AltaClientes.AcessoDatos
                 accesoSqlServer.Close();
             }
 
-            return dtClientes;
+            return dtUsuarios;
         }
 
 

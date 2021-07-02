@@ -14,6 +14,7 @@ namespace AltaClientes
         /// Elemento para la conexion
         /// </summary>
         private static String cadenaConexionSqlServer;
+     
 
         /// <summary>
         /// Propiedad para la conexion
@@ -23,6 +24,9 @@ namespace AltaClientes
             get { return Program.cadenaConexionSqlServer; }
             set { Program.cadenaConexionSqlServer = value; }
         }
+    
+        
+    
 
         /// <summary>
         /// Punto de entrada principal para la aplicación.
