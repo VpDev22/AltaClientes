@@ -17,7 +17,7 @@ namespace AltaClientes
 {
     public partial class frmAltaClientes : Form
     {
-        
+       
         private AltaClientesViewModel altaclientesviewmodel;
         public frmAltaClientes()
         {
@@ -31,6 +31,14 @@ namespace AltaClientes
         private void Limpiar()
         {
             txtCodigo.Clear();
+            txtDomicilio.Clear();
+            txtNombre.Clear();
+            txtNumCasa.Clear();
+            txtTelefono.Clear();
+        }
+        private void Limpiar1()
+        {
+           
             txtDomicilio.Clear();
             txtNombre.Clear();
             txtNumCasa.Clear();
@@ -80,27 +88,74 @@ namespace AltaClientes
                 //}
             }
         }
-        
+        public int NumeroSiguiente()
+        {
+            SqlConnection cnn = new SqlConnection(Program.CadenaConexionSqlServer);
+            SqlCommand cmd = new SqlCommand("Select max(num_cliente) from cat_clientes");
+            cmd.Connection = cnn;
+            try
+            {
+                cnn.Open();
+                object res = cmd.ExecuteScalar();
+                if (res == System.DBNull.Value)
+                    return 0;
+                else
+                {
+                    return Convert.ToInt32(res) + 1;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error:" + ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            //Si llega aquÃ­ es porque hubo error
+            //Se devuelve 0
+            return 0;
+        }
+        public void llenaCombo()
+        {
+            ComboBox mybox = new ComboBox();
+            mybox.Items.Add("Guardar");
+            mybox.Items.Add("Modificar");
+            this.Controls.Add(mybox);
+            mybox.Location = new Point(133, 17);
+            mybox.Size = new Size(100, 26);
+
+        }
         private void frmAltaClientes_Load(object sender, EventArgs e)
         {
+            
+            //txtCodigo.Text = NumeroSiguiente().ToString();
             altaclientesviewmodel = new AltaClientesViewModel();
+            cboAccion.Items.Add("Guardar");
+            cboAccion.Items.Add("Modificar");
+
+
+
+        }
+        public void SeleccionCombo()
+        {
+            
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Guardar();
+            
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
-               
         }
         
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            buscar();
-            
+            buscar();         
         }
         
         public void buscar()
@@ -142,41 +197,23 @@ namespace AltaClientes
             }
         }
 
-        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        private void cboAccion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (e.KeyChar == 13)
-            //    try
-            //    {
-            //        SqlConnection cnn = new SqlConnection(Program.CadenaConexionSqlServer);
-            //        SqlCommand comando = new SqlCommand("select * from cat_clientes where num_cliente=" + txtCodigo.Text, cnn);
-            //        cnn.Open();
-            //        SqlDataReader myReader = comando.ExecuteReader();
-            //        comando.Dispose();
-                    
-            //        if (myReader.HasRows)
-            //        {
-            //            while (myReader.Read())
-            //            {
-            //                txtNombre.Text = myReader.GetValue(1).ToString();
-            //                txtTelefono.Text = myReader.GetValue(2).ToString();
-            //                dtpFechaNacimiento.Text = myReader.GetValue(3).ToString();
-            //                txtDomicilio.Text = myReader.GetValue(4).ToString();
-            //                txtNumCasa.Text = myReader.GetValue(5).ToString();
-            //            }
-
-            //            txtNombre.Focus();
-            //        }
-            //        else
-            //        {
-            //        }
-            //        myReader.Close();
-            //        myReader.Dispose();
-            //        cnn.Close();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Error:" + ex.Message);
-            //    }
+            int indice = cboAccion.SelectedIndex;
+            
+            if (cboAccion.Text=="Guardar")
+            {
+                txtCodigo.Enabled = false;
+                btnBuscar.Enabled = false;
+                txtCodigo.Text = NumeroSiguiente().ToString();
+                Limpiar1();
+                
+            }
+            else
+            {
+                Limpiar();
+                btnBuscar.Enabled = true;
+            }
         }
     }
 }

@@ -23,28 +23,50 @@ namespace AltaClientes
         {
             InitializeComponent();
             tabla = dtUsuarios;
+
         }
 
         private void FrmBuscar_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'pruebaDataSet.proc_CargarClientes' Puede moverla o quitarla según sea necesario.
-            this.proc_CargarClientesTableAdapter.Fill(this.pruebaDataSet.proc_CargarClientes);
+            this.dgvDatosCliente.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDatosCliente.MultiSelect = false;
+            //// TODO: esta línea de código carga datos en la tabla 'pruebaDataSet.proc_CargarClientes' Puede moverla o quitarla según sea necesario.
+            //this.proc_CargarClientesTableAdapter.Fill(this.pruebaDataSet.proc_CargarClientes);
             if (!LlenaGrid())
             {
                 this.Dispose();
             }
-            
-            
-
-           
         }
         #region Elementos
 
         DataTable tabla = new DataTable();
+        DataSet ds = new DataSet();
 
         #endregion Elementos
 
-   
+        private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
+        {
+            Buscador();
+            //tabla.DefaultView.RowFilter = $"Nombre LIKE '{txtBuscarNombre.Text}%'";
+
+        }
+        private void Buscador()
+        {
+            dgvDatosCliente.Rows.Clear();
+
+            foreach (DataRow dtRow in tabla.Rows)
+            {
+                if (dtRow["nom_cliente"].ToString().Contains(txtBuscarNombre.Text))
+                {
+                    dgvDatosCliente.Rows.Add(dtRow["num_cliente"].ToString(),
+                                                 dtRow["nom_cliente"].ToString().ToUpper(),
+                                                 dtRow["domicilio"].ToString().ToUpper(),
+                                                 dtRow["telefono"].ToString().ToUpper(),
+                                                 dtRow["num_interior"].ToString().ToUpper(),
+                                                 dtRow["fec_nacimiento"].ToString().ToUpper());
+                }
+            }
+        }
         private Boolean LlenaGrid()
         {
             Boolean resultado = true;
@@ -53,7 +75,7 @@ namespace AltaClientes
             {
                 foreach (DataRow dtRow in tabla.Rows)
                 {
-               
+
                     dgvDatosCliente.Rows.Add(dtRow["num_cliente"].ToString().ToUpper(),
                                                  dtRow["nom_cliente"].ToString().ToUpper(),
                                                  dtRow["domicilio"].ToString().ToUpper(),
@@ -61,12 +83,11 @@ namespace AltaClientes
                                                  dtRow["num_interior"].ToString().ToUpper(),
                                                  dtRow["fec_nacimiento"].ToString().ToUpper());
 
-                    this.dgvDatosCliente.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                    this.dgvDatosCliente.MultiSelect = false;
+                    
 
 
 
-                    dgvDatosCliente.DataSource = tabla.DataSet;
+                    //dgvDatosCliente.DataSource = tabla;
                 }
 
                 resultado = true;
@@ -74,7 +95,7 @@ namespace AltaClientes
             }
             catch
             { }
-            
+
             return resultado;
         }
 
@@ -127,10 +148,7 @@ namespace AltaClientes
             devuelveCliente();
         }
 
-        private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
-        {
-             tabla.DefaultView.RowFilter = $"Nombre LIKE '{txtBuscarNombre.Text}%'";
-        }
+        
 
         private void dgvDatosCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
