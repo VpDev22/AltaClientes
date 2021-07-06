@@ -39,7 +39,7 @@ namespace AltaClientes.AcessoDatos
         /// </summary>
         /// <param name="u">Entidad usuario con los datos a guardar</param>
         /// <returns>Regresa true si guardó el registro, false si ocurrió un error.</returns>
-        public Boolean GuardarCliente(int num, string nombre, string telefono, string fechanac,string domicilio, int numeroint )
+        public Boolean GuardarCliente(int num, string nombre, string telefono, string fechanac,string domicilio, int numeroint, int estatus )
         {
             Boolean resultado = false;
             string query = String.Empty;
@@ -49,7 +49,7 @@ namespace AltaClientes.AcessoDatos
                 if (accesoSqlServer.Open())
                 {
                     query = String.Format($"EXEC prueba.dbo.proc_GuardarClientes @numCliente = {num} ," +
-                                        $" @nomCliente = '{nombre}', @telefono = '{telefono}',@fechaNac = '{fechanac}', @domicilio = '{domicilio}', @interior ='{numeroint}'");
+                                        $" @nomCliente = '{nombre}', @telefono = '{telefono}',@fechaNac = '{fechanac}', @domicilio = '{domicilio}', @interior ='{numeroint}', @estatus = '{estatus}'");
                     
                     resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
                 }

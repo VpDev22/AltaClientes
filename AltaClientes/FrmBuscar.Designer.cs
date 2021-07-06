@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscarNombre = new System.Windows.Forms.TextBox();
             this.dgvDatosCliente = new System.Windows.Forms.DataGridView();
@@ -40,6 +40,7 @@
             this.domicilio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fec_nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.opc_activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.num_interior = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosCliente)).BeginInit();
             this.SuspendLayout();
@@ -66,14 +67,14 @@
             this.dgvDatosCliente.AllowUserToAddRows = false;
             this.dgvDatosCliente.AllowUserToDeleteRows = false;
             this.dgvDatosCliente.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatosCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.num_cliente,
@@ -81,22 +82,22 @@
             this.domicilio,
             this.fec_nacimiento,
             this.telefono,
+            this.opc_activo,
             this.num_interior});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDatosCliente.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDatosCliente.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDatosCliente.Location = new System.Drawing.Point(12, 80);
             this.dgvDatosCliente.Name = "dgvDatosCliente";
             this.dgvDatosCliente.ReadOnly = true;
             this.dgvDatosCliente.RowTemplate.Height = 28;
             this.dgvDatosCliente.Size = new System.Drawing.Size(552, 312);
             this.dgvDatosCliente.TabIndex = 2;
-            this.dgvDatosCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCliente_CellContentClick);
             // 
             // btnAceptar
             // 
@@ -155,6 +156,13 @@
             this.telefono.ReadOnly = true;
             this.telefono.Visible = false;
             // 
+            // opc_activo
+            // 
+            this.opc_activo.HeaderText = "Estatus";
+            this.opc_activo.Name = "opc_activo";
+            this.opc_activo.ReadOnly = true;
+            this.opc_activo.Visible = false;
+            // 
             // num_interior
             // 
             this.num_interior.HeaderText = "Numero Interior";
@@ -188,12 +196,13 @@
         private System.Windows.Forms.TextBox txtBuscarNombre;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnSalir;
+        public System.Windows.Forms.DataGridView dgvDatosCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn num_cliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn nom_cliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn domicilio;
         private System.Windows.Forms.DataGridViewTextBoxColumn fec_nacimiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn opc_activo;
         private System.Windows.Forms.DataGridViewTextBoxColumn num_interior;
-        public System.Windows.Forms.DataGridView dgvDatosCliente;
     }
 }

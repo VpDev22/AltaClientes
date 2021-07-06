@@ -22,6 +22,7 @@ namespace AltaClientes
         public frmAltaClientes()
         {
             InitializeComponent();
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -35,6 +36,7 @@ namespace AltaClientes
             txtNombre.Clear();
             txtNumCasa.Clear();
             txtTelefono.Clear();
+            cboEstatus.Text = "";
         }
         private void Limpiar1()
         {
@@ -43,6 +45,7 @@ namespace AltaClientes
             txtNombre.Clear();
             txtNumCasa.Clear();
             txtTelefono.Clear();
+            cboEstatus.Text = "";
         }
         private void Salir()
         {
@@ -68,16 +71,16 @@ namespace AltaClientes
                     string fechanac = dtpFechaNacimiento.Value.ToString("yyyy/MM/dd");
                     string domicilio = txtDomicilio.Text;
                     int numinterior = int.Parse(txtNumCasa.Text);
+                    int estatus = int.Parse(cboEstatus.Text);
 
                 try
                 {
-                    if (altaclientesviewmodel.GuardarCliente(num, nombre, telefono, fechanac, domicilio, numinterior))
+                    if (altaclientesviewmodel.GuardarCliente(num, nombre, telefono, fechanac, domicilio, numinterior, estatus))
                     {
                         MessageBox.Show("Se guardó correctamente el usuario",
                                     "Guardar",
                                     MessageBoxButtons.OK);
                         Limpiar();
-                        //CargaCombos();
                     }
                 }
                 catch (Exception ex)
@@ -116,31 +119,18 @@ namespace AltaClientes
             //Se devuelve 0
             return 0;
         }
-        public void llenaCombo()
-        {
-            ComboBox mybox = new ComboBox();
-            mybox.Items.Add("Guardar");
-            mybox.Items.Add("Modificar");
-            this.Controls.Add(mybox);
-            mybox.Location = new Point(133, 17);
-            mybox.Size = new Size(100, 26);
-
-        }
+        
         private void frmAltaClientes_Load(object sender, EventArgs e)
         {
-            
-            //txtCodigo.Text = NumeroSiguiente().ToString();
+
+            btnBuscar.Enabled = false;
             altaclientesviewmodel = new AltaClientesViewModel();
             cboAccion.Items.Add("Guardar");
             cboAccion.Items.Add("Modificar");
-
-
-
+            cboEstatus.Items.Add(1);
+            cboEstatus.Items.Add(0);
         }
-        public void SeleccionCombo()
-        {
-            
-        }
+       
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -178,6 +168,7 @@ namespace AltaClientes
                     string tel = frmBuscar.telefon;
                     string num = frmBuscar.numi;
                     string fec = frmBuscar.fech;
+                    string opcac = frmBuscar.opc;
 
                     this.txtCodigo.Text = cod;
                     this.txtNombre.Text = nom;
@@ -185,6 +176,7 @@ namespace AltaClientes
                     this.txtTelefono.Text = tel;
                     this.txtNumCasa.Text = num;
                     this.dtpFechaNacimiento.Text = fec;
+                    this.cboEstatus.Text = opcac.ToString();
                 }
 
             }
@@ -206,13 +198,24 @@ namespace AltaClientes
                 txtCodigo.Enabled = false;
                 btnBuscar.Enabled = false;
                 txtCodigo.Text = NumeroSiguiente().ToString();
-                Limpiar1();
-                
+                Limpiar1();  
             }
             else
             {
                 Limpiar();
                 btnBuscar.Enabled = true;
+            }
+        }
+
+        private void cboEstatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cboEstatus.Text=="1")
+            {
+                cboEstatus.Text = "Activo";
+            }
+            else if (cboEstatus.Text=="0")
+            {
+                cboEstatus.Text = "Inactivo";
             }
         }
     }

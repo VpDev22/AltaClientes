@@ -45,10 +45,10 @@
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.cboEstatus = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.cboAccion = new System.Windows.Forms.ComboBox();
+            this.cboEstatus = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -202,14 +202,6 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // cboEstatus
-            // 
-            this.cboEstatus.FormattingEnabled = true;
-            this.cboEstatus.Location = new System.Drawing.Point(200, 310);
-            this.cboEstatus.Name = "cboEstatus";
-            this.cboEstatus.Size = new System.Drawing.Size(121, 28);
-            this.cboEstatus.TabIndex = 26;
-            // 
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(431, 143);
@@ -238,16 +230,25 @@
             this.cboAccion.TabIndex = 33;
             this.cboAccion.SelectedIndexChanged += new System.EventHandler(this.cboAccion_SelectedIndexChanged);
             // 
+            // cboEstatus
+            // 
+            this.cboEstatus.FormattingEnabled = true;
+            this.cboEstatus.Location = new System.Drawing.Point(199, 310);
+            this.cboEstatus.Name = "cboEstatus";
+            this.cboEstatus.Size = new System.Drawing.Size(121, 28);
+            this.cboEstatus.TabIndex = 34;
+            this.cboEstatus.SelectedIndexChanged += new System.EventHandler(this.cboEstatus_SelectedIndexChanged);
+            // 
             // frmAltaClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(513, 422);
             this.ControlBox = false;
+            this.Controls.Add(this.cboEstatus);
             this.Controls.Add(this.cboAccion);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.cboEstatus);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblMensaje);
@@ -293,10 +294,10 @@
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.ComboBox cboEstatus;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboAccion;
+        private System.Windows.Forms.ComboBox cboEstatus;
     }
 }
 

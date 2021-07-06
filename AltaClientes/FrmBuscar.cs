@@ -18,6 +18,7 @@ namespace AltaClientes
         public string telefon { get; set; }
         public string fech { get; set; }
         public string numi { get; set; }
+        public string opc { get; set; }
 
         public FrmBuscar(DataTable dtUsuarios)
         {
@@ -30,8 +31,7 @@ namespace AltaClientes
         {
             this.dgvDatosCliente.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatosCliente.MultiSelect = false;
-            //// TODO: esta línea de código carga datos en la tabla 'pruebaDataSet.proc_CargarClientes' Puede moverla o quitarla según sea necesario.
-            //this.proc_CargarClientesTableAdapter.Fill(this.pruebaDataSet.proc_CargarClientes);
+            
             if (!LlenaGrid())
             {
                 this.Dispose();
@@ -47,8 +47,6 @@ namespace AltaClientes
         private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
         {
             Buscador();
-            //tabla.DefaultView.RowFilter = $"Nombre LIKE '{txtBuscarNombre.Text}%'";
-
         }
         private void Buscador()
         {
@@ -63,7 +61,8 @@ namespace AltaClientes
                                                  dtRow["domicilio"].ToString().ToUpper(),
                                                  dtRow["telefono"].ToString().ToUpper(),
                                                  dtRow["num_interior"].ToString().ToUpper(),
-                                                 dtRow["fec_nacimiento"].ToString().ToUpper());
+                                                 dtRow["fec_nacimiento"].ToString().ToUpper(),
+                                                 dtRow["opc_activo"].ToString().ToUpper());
                 }
             }
         }
@@ -81,13 +80,8 @@ namespace AltaClientes
                                                  dtRow["domicilio"].ToString().ToUpper(),
                                                  dtRow["telefono"].ToString().ToUpper(),
                                                  dtRow["num_interior"].ToString().ToUpper(),
-                                                 dtRow["fec_nacimiento"].ToString().ToUpper());
-
-                    
-
-
-
-                    //dgvDatosCliente.DataSource = tabla;
+                                                 dtRow["fec_nacimiento"].ToString().ToUpper(), 
+                                                 dtRow["opc_activo"].ToString().ToUpper());
                 }
 
                 resultado = true;
@@ -121,6 +115,7 @@ namespace AltaClientes
             string telefono;
             string numinterior;
             string fechan;
+            string opca;
 
 
             dr = dgvDatosCliente.CurrentRow;
@@ -130,13 +125,15 @@ namespace AltaClientes
             telefono = dr.Cells[3].Value.ToString();
             fechan = dr.Cells[5].Value.ToString();     
             numinterior = dr.Cells[4].Value.ToString();
-   
+            opca = dr.Cells[6].Value.ToString();
+
             this.codigo = codigo;
             this.nombre = nombre;
             this.telefon = telefono;
             this.fech = fechan;
             this.domicili = domicilio;
             this.numi = numinterior;
+            this.opc = opca;
             //this.estatus = estatus;
 
             this.DialogResult = DialogResult.OK;
@@ -150,9 +147,6 @@ namespace AltaClientes
 
         
 
-        private void dgvDatosCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //txtBuscarNombre.Text = dgvDatosCliente.CurrentRow.Cells["Nombre"].Value.ToString();
-        }
+       
     }
 }

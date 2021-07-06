@@ -44,11 +44,11 @@ namespace AltaClientes.Modelos
             return dtUsuarios;
         }
         
-        public Boolean GuardarCliente(int num, string nombre, string telefono, string fechanac, string domicilio, int numeroint)
+        public Boolean GuardarCliente(int num, string nombre, string telefono, string fechanac, string domicilio, int numeroint, int estatus)
         {
             Boolean resultado = false;
 
-            resultado = altaclientesDAL.GuardarCliente(num, nombre, telefono, fechanac, domicilio, numeroint);
+            resultado = altaclientesDAL.GuardarCliente(num, nombre, telefono, fechanac, domicilio, numeroint, estatus);
             return resultado;
         }
        
