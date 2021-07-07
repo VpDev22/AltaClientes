@@ -115,24 +115,38 @@ namespace AltaClientes
             {
                 cnn.Close();
             }
-            //Si llega aquÃ­ es porque hubo error
-            //Se devuelve 0
             return 0;
         }
-        
+        //Dictionary<string, int> integers = new Dictionary<string, int>();
         private void frmAltaClientes_Load(object sender, EventArgs e)
         {
-
             btnBuscar.Enabled = false;
             altaclientesviewmodel = new AltaClientesViewModel();
             cboAccion.Items.Add("Guardar");
             cboAccion.Items.Add("Modificar");
+            //integers.Add(Text="Activo", value: 1);
+            //integers.Add(Text="Inactivo", value: 0);
             cboEstatus.Items.Add(1);
             cboEstatus.Items.Add(0);
-        }
-       
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+            //    var itemList = new List<Item>()
+            //    {
+            //        new Item() { Text = "Activo", Value = 1 },
+            //        new Item() { Text = "Inactivo", Value = 0 }
+            //    };
+
+            //    cboEstatus.DataSource = itemList;
+            //    cboEstatus.DisplayMember = "Text";
+            //    cboEstatus.ValueMember = "Value";
+            //}
+
+            //public class Item
+            //{
+            //    public int Value { get; set; }
+            //    public string Text { get; set; }
+            //}
+        }
+            private void btnGuardar_Click(object sender, EventArgs e)
         {
             Guardar();
             
@@ -176,7 +190,7 @@ namespace AltaClientes
                     this.txtTelefono.Text = tel;
                     this.txtNumCasa.Text = num;
                     this.dtpFechaNacimiento.Text = fec;
-                    this.cboEstatus.Text = opcac.ToString();
+                    this.cboEstatus.Text = opcac;
                 }
 
             }
@@ -209,11 +223,12 @@ namespace AltaClientes
 
         private void cboEstatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboEstatus.Text=="1")
+            //int intValue = integers[(string)cboEstatus.SelectedItem];
+            if (cboEstatus.Text == "1")
             {
                 cboEstatus.Text = "Activo";
             }
-            else if (cboEstatus.Text=="0")
+            else if (cboEstatus.Text == "0")
             {
                 cboEstatus.Text = "Inactivo";
             }
