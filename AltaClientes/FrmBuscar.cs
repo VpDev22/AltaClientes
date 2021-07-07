@@ -31,7 +31,7 @@ namespace AltaClientes
         {
             this.dgvDatosCliente.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatosCliente.MultiSelect = false;
-            
+
             if (!LlenaGrid())
             {
                 this.Dispose();
@@ -80,7 +80,7 @@ namespace AltaClientes
                                                  dtRow["domicilio"].ToString().ToUpper(),
                                                  dtRow["telefono"].ToString().ToUpper(),
                                                  dtRow["num_interior"].ToString().ToUpper(),
-                                                 dtRow["fec_nacimiento"].ToString().ToUpper(), 
+                                                 dtRow["fec_nacimiento"].ToString().ToUpper(),
                                                  dtRow["opc_activo"].ToString().ToUpper());
                 }
 
@@ -123,7 +123,7 @@ namespace AltaClientes
             nombre = dr.Cells[1].Value.ToString();
             domicilio = dr.Cells[2].Value.ToString();
             telefono = dr.Cells[3].Value.ToString();
-            fechan = dr.Cells[5].Value.ToString();     
+            fechan = dr.Cells[5].Value.ToString();
             numinterior = dr.Cells[4].Value.ToString();
             opca = dr.Cells[6].Value.ToString();
 
@@ -143,10 +143,21 @@ namespace AltaClientes
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             devuelveCliente();
+
+
+
+
+
         }
 
-        
-
-       
+        private void txtBuscarNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+                MessageBox.Show("Ingrese solo letra");
+                return;
+            }
+        }
     }
 }

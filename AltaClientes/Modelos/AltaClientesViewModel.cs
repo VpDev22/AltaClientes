@@ -44,7 +44,7 @@ namespace AltaClientes.Modelos
             return dtUsuarios;
         }
         
-        public Boolean GuardarCliente(int num, string nombre, string telefono, string fechanac, string domicilio, int numeroint, int estatus)
+        public Boolean GuardarCliente(int num, string nombre, string telefono, string fechanac, string domicilio, int numeroint, string estatus)
         {
             Boolean resultado = false;
 

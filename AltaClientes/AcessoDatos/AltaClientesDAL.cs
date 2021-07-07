@@ -39,7 +39,7 @@ namespace AltaClientes.AcessoDatos
         /// </summary>
         /// <param name="u">Entidad usuario con los datos a guardar</param>
         /// <returns>Regresa true si guardó el registro, false si ocurrió un error.</returns>
-        public Boolean GuardarCliente(int num, string nombre, string telefono, string fechanac,string domicilio, int numeroint, int estatus )
+        public Boolean GuardarCliente(int num, string nombre, string telefono, string fechanac,string domicilio, int numeroint, string estatus )
         {
             Boolean resultado = false;
             string query = String.Empty;

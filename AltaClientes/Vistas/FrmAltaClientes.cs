@@ -17,12 +17,14 @@ namespace AltaClientes
 {
     public partial class frmAltaClientes : Form
     {
-       
+
         private AltaClientesViewModel altaclientesviewmodel;
         public frmAltaClientes()
         {
             InitializeComponent();
-            
+
+           
+
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -40,7 +42,7 @@ namespace AltaClientes
         }
         private void Limpiar1()
         {
-           
+
             txtDomicilio.Clear();
             txtNombre.Clear();
             txtNumCasa.Clear();
@@ -60,18 +62,20 @@ namespace AltaClientes
         {
             //if (ValidaTodosLosCampos(Controles.TODOS))
             //{
-                if (MessageBox.Show("¿Desea registrar al usuario?",
-                    "Guardar",
-                    MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
+            if (MessageBox.Show("¿Desea registrar al usuario?",
+                "Guardar",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
 
-                    int num = int.Parse(txtCodigo.Text);
-                    string nombre = txtNombre.Text;
-                    string telefono = txtTelefono.Text;
-                    string fechanac = dtpFechaNacimiento.Value.ToString("yyyy/MM/dd");
-                    string domicilio = txtDomicilio.Text;
-                    int numinterior = int.Parse(txtNumCasa.Text);
-                    int estatus = int.Parse(cboEstatus.Text);
+                int num = int.Parse(txtCodigo.Text);
+                string nombre = txtNombre.Text;
+                string telefono = txtTelefono.Text;
+                string fechanac = dtpFechaNacimiento.Value.ToString("yyyy/MM/dd");
+                string domicilio = txtDomicilio.Text;
+                int numinterior = int.Parse(txtNumCasa.Text);
+                string estatus = cboEstatus.Text;
+
+
 
                 try
                 {
@@ -86,7 +90,7 @@ namespace AltaClientes
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "No se pudo guardar");
-                    
+
                 }
                 //}
             }
@@ -117,51 +121,54 @@ namespace AltaClientes
             }
             return 0;
         }
+
         //Dictionary<string, int> integers = new Dictionary<string, int>();
         private void frmAltaClientes_Load(object sender, EventArgs e)
         {
-            btnBuscar.Enabled = false;
+
+            deshabilita();
             altaclientesviewmodel = new AltaClientesViewModel();
             cboAccion.Items.Add("Guardar");
             cboAccion.Items.Add("Modificar");
-            //integers.Add(Text="Activo", value: 1);
-            //integers.Add(Text="Inactivo", value: 0);
-            cboEstatus.Items.Add(1);
-            cboEstatus.Items.Add(0);
+            //integers.Add(Text = "Activo", value: 1);
+            //integers.Add(Text = "Inactivo", value: 0);
+            cboEstatus.Items.Add("1");
+            cboEstatus.Items.Add("0");
 
-            //    var itemList = new List<Item>()
+            //var itemList = new List<Item>()
             //    {
             //        new Item() { Text = "Activo", Value = 1 },
             //        new Item() { Text = "Inactivo", Value = 0 }
             //    };
 
-            //    cboEstatus.DataSource = itemList;
-            //    cboEstatus.DisplayMember = "Text";
-            //    cboEstatus.ValueMember = "Value";
-            //}
-
-            //public class Item
-            //{
-            //    public int Value { get; set; }
-            //    public string Text { get; set; }
-            //}
+            //cboEstatus.DataSource = itemList;
+            //cboEstatus.DisplayMember = "Text";
+            //cboEstatus.ValueMember = "Value";
         }
-            private void btnGuardar_Click(object sender, EventArgs e)
+
+        //public class Item
+        //{
+        //    public int Value { get; set; }
+        //    public string Text { get; set; }
+        //}
+
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
             Guardar();
-            
+
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
+            deshabilita();
         }
-        
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            buscar();         
+            buscar();
         }
-        
+
         public void buscar()
         {
             DataTable dtUsuarios;
@@ -177,7 +184,7 @@ namespace AltaClientes
                 if (resultado == DialogResult.OK)
                 {
                     string cod = frmBuscar.codigo;
-                    string nom = frmBuscar.nombre;    
+                    string nom = frmBuscar.nombre;
                     string dom = frmBuscar.domicili;
                     string tel = frmBuscar.telefon;
                     string num = frmBuscar.numi;
@@ -206,31 +213,109 @@ namespace AltaClientes
         private void cboAccion_SelectedIndexChanged(object sender, EventArgs e)
         {
             int indice = cboAccion.SelectedIndex;
-            
-            if (cboAccion.Text=="Guardar")
+
+            if (cboAccion.Text == "Guardar")
             {
-                txtCodigo.Enabled = false;
-                btnBuscar.Enabled = false;
+
+                habilitaGuardar();
+               
                 txtCodigo.Text = NumeroSiguiente().ToString();
-                Limpiar1();  
+                Limpiar1();
             }
             else
             {
                 Limpiar();
-                btnBuscar.Enabled = true;
+                habilitaModificar();
             }
         }
 
         private void cboEstatus_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //if (cboEstatus.SelectedItem != null)
+            //{
+            //    var item = (Item)cboEstatus.SelectedItem;
+            //    MessageBox.Show($"{item.Text} - {item.Value}");
+            //}
             //int intValue = integers[(string)cboEstatus.SelectedItem];
             if (cboEstatus.Text == "1")
             {
                 cboEstatus.Text = "Activo";
+
+
             }
             else if (cboEstatus.Text == "0")
             {
                 cboEstatus.Text = "Inactivo";
+
+            }
+
+
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+                MessageBox.Show("Ingrese solo números");
+                return;
+            }
+        }
+
+        private void txtNumCasa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+                MessageBox.Show("Ingrese solo números");
+                return;
+            }
+        }
+
+    public void habilitaGuardar()
+        {
+            txtCodigo.Enabled = false;
+            txtDomicilio.Enabled = true;
+            txtNombre.Enabled = true;
+            txtNumCasa.Enabled = true;
+            cboEstatus.Enabled = true;
+            dtpFechaNacimiento.Enabled = true;
+            btnBuscar.Enabled = false;
+            btnGuardar.Enabled = true;
+            txtTelefono.Enabled = true;
+        }
+        public void habilitaModificar()
+        {
+            txtCodigo.Enabled = false;
+            txtDomicilio.Enabled = true;
+            txtNombre.Enabled = true;
+            txtNumCasa.Enabled = true;
+            cboEstatus.Enabled = true;
+            dtpFechaNacimiento.Enabled = true;
+            btnBuscar.Enabled = true;
+            btnGuardar.Enabled = true;
+            txtTelefono.Enabled = true;
+        }
+        public void deshabilita()
+        {
+            txtCodigo.Enabled = false;
+            txtDomicilio.Enabled = false;
+            txtNombre.Enabled = false;
+            txtNumCasa.Enabled = false;
+            cboEstatus.Enabled = false;
+            dtpFechaNacimiento.Enabled = false;
+            btnBuscar.Enabled = false;
+            btnGuardar.Enabled = false;
+            txtTelefono.Enabled = false;
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+                MessageBox.Show("Ingrese solo letra");
+                return;
             }
         }
     }
