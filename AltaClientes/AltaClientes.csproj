@@ -49,7 +49,13 @@
     <Compile Include="AcessoDatos\AltaClientesDAL.cs" />
     <Compile Include="Clases\AccesoSqlServer.cs" />
     <Compile Include="Clases\Extensores.cs" />
+    <Compile Include="Entidades\Enumeradores.cs" />
     <Compile Include="Modelos\AltaClientesViewModel.cs" />
+    <Compile Include="pruebaDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pruebaDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmAltaClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vistas\FrmBuscar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmBuscar.Designer.cs">
+      <DependentUpon>FrmBuscar.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Vistas\FrmAltaClientes.resx">
       <DependentUpon>FrmAltaClientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -70,6 +82,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Vistas\FrmBuscar.resx">
+      <DependentUpon>FrmBuscar.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\frmAltaClientes.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -79,6 +95,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="pruebaDataSet1.xsc">
+      <DependentUpon>pruebaDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="pruebaDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>pruebaDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="pruebaDataSet1.xss">
+      <DependentUpon>pruebaDataSet1.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

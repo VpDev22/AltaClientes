@@ -24,14 +24,16 @@ namespace AltaClientes.Modelos
 
             private AltaClientesDAL altaClientesDAL;
 
-            #endregion Elementos
+        public object altaClienteDAL { get; private set; }
 
-            #region Constructor
+        #endregion Elementos
 
-            /// <summary>
-            /// Constructor que instancia todos los objeto usados en la clase. 
-            /// </summary>
-            public AltaClientesViewModel()
+        #region Constructor
+
+        /// <summary>
+        /// Constructor que instancia todos los objeto usados en la clase. 
+        /// </summary>
+        public AltaClientesViewModel()
             {
             altaClientesDAL = new AltaClientesDAL();
             }
@@ -39,52 +41,40 @@ namespace AltaClientes.Modelos
         #endregion Constructor
 
         #region Métodos públicos
-        /*
-            public DataTable ConsultarUsuarios()
-            {
-                DataTable dtUsuarios;
-
-                dtUsuarios = altaClientesDAL.ConsultarUsuarios();
-
-                return dtUsuarios;
-            }
         
-            public DataTable ConsultarRoles()
-            {
-                DataTable dtRoles;
-
-                dtRoles = altaClientesDAL.ConsultarRoles();
-
-                return dtRoles;
-            }
-
-            public DataTable ConsultarSuplentes()
-            {
-                DataTable dtSuplentes;
-
-                dtSuplentes = altaClientesDAL.ConsultarSuplentes();
-
-                return dtSuplentes;
-            }
-
-            public Int32 ValidarUsuario(String usuario)
-            {
-                int resultado = 0;
-
-                resultado = altaClientesDAL.ValidarUsuario(usuario);
-
-                return resultado;
-            }
- */
-            public Boolean GuardarUsuario(UsuarioInfo usuario)
+            public Boolean AltaCliente(int codigo, string nombre, string telefono, string fecha, string domicilio, int numero, int estatus)
             {
                 Boolean resultado = false;
 
-                resultado = altaClientesDAL.GuardarUsuario(usuario);
+                resultado = altaClientesDAL.AltaCliente(codigo,nombre, telefono, fecha,  domicilio, numero, estatus);
 
                 return resultado;
             }
-           
+           //public Boolean ActualizarClientes(int codigo, string nombre, string telefono, string fecha, string domicilio, int numero)
+           // {
+           //     Boolean resultado = false;
+
+           //     resultado = altaClientesDAL.ActualizarClientes(codigo,nombre, telefono, fecha,  domicilio, numero);
+
+           //     return resultado;
+           // }
+        public Boolean DeshabilitarClientes(int codigo)
+            {
+                Boolean resultado = false;
+
+                resultado = altaClientesDAL.DeshabilitarClientes(codigo);
+
+                return resultado;
+            }
+
+        public DataTable CargarClientes()
+        {
+            DataTable dtClientes;
+
+            dtClientes = altaClientesDAL.CargarClientes();
+
+            return dtClientes;
+        }
         #endregion Métodos públicos
     }
 

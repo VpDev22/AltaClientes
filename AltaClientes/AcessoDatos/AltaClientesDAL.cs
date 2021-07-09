@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,29 +36,20 @@ namespace AltaClientes.AcessoDatos
 
         #region Métodos públicos
 
-        /// <summary>
-        /// Método para consultar los usuarios.
-        /// </summary>
-        /// <returns>Regresa un DataTable con la lista de usuarios.</returns>
-        /// 
-
-        /// <summary>
-        /// Método para agregar un usuario a la Base de Datos.
-        /// </summary>
-        /// <param name="u">Entidad usuario con los datos a guardar</param>
-        /// <returns>Regresa true si guardó el registro, false si ocurrió un error.</returns>
-        public Boolean GuardarUsuario(UsuarioInfo u)
+        public Boolean AltaCliente(int codigo, string nombre, string telefono, string fecha, string domicilio, int numero, int estatus)
         {
             Boolean resultado = false;
             string query = String.Empty;
-
             try
             {
                 if (accesoSqlServer.Open())
-                {
-                    query = String.Format($"EXEC MonitorImportacion.dbo.proc_MaPer001GuardarUsuarios @numUsuario = {u.NumeroUsuario} ," +
-                                        $" @usuario = '{u.NombreUsuario}', @pass = '{u.PassUsuario}',@rol = {u.RolUsuario}, @usuarioAutoriza = {Program.Usuario}");
 
+
+                {
+                    query = String.Format($"EXEC prueba.dbo.proc_GuardarClientes @numCliente = {codigo}, @nomCliente ='{nombre}',@telefono ='{telefono}' ," +
+                        $"@fechaNac = '{fecha}', @domicilio = '{domicilio}' , @interior = {numero}, @estatus = {estatus} ");
+
+                    //MessageBox.Show(query);
                     resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
                 }
 
@@ -85,6 +77,174 @@ namespace AltaClientes.AcessoDatos
             return resultado;
 
         }
+
+        //public Boolean ActualizarClientes(int codigo, string nombre, string telefono, string fecha, string domicilio, int numero)
+        //{
+        //    Boolean resultado = false;
+        //    string query = String.Empty;
+        //    try
+        //    {
+        //        if (accesoSqlServer.Open())
+
+
+        //        {
+        //            query = String.Format($"EXEC prueba.dbo.proc_GuardarClientes @codigo = {codigo}, @nombrecliente ='{nombre}',@telefono ='{telefono}' ," +
+        //                $"@fechanacimiento = '{fecha}', @domicilio = '{domicilio}' , @numinterior = {numero} ");
+
+        //            //MessageBox.Show(query);
+        //            resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al modificar usuario",
+        //                        "Error",
+        //                        MessageBoxButtons.OK,
+        //                        MessageBoxIcon.Error);
+
+        //        /*Error.Guardar(accesoSqlServer.SqlConexion,
+        //                      "MAPER001",
+        //                      "AsignarUsuarioDAL",
+        //                      "GuardarUsuario",
+        //                      "proc_MaPer001GuardarUsuarios",
+        //                      "0",
+        //                      ex.Message);*/
+        //    }
+        //    finally
+        //    {
+        //        accesoSqlServer.Close();
+        //    }
+
+        //    return resultado;
+
+        //}
+
+        public Boolean DeshabilitarClientes(int codigo)
+        {
+            Boolean resultado = false;
+            string query = String.Empty;
+            try
+            {
+                if (accesoSqlServer.Open())
+
+
+                {
+                    query = String.Format($"EXEC prueba.dbo.proc_DeshabilitarClientes @codigo = {codigo} ");
+
+                    //MessageBox.Show(query);
+                    resultado = Convert.ToBoolean(accesoSqlServer.ExecuteQuery(query));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar usuario",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                /*Error.Guardar(accesoSqlServer.SqlConexion,
+                              "MAPER001",
+                              "AsignarUsuarioDAL",
+                              "GuardarUsuario",
+                              "proc_MaPer001GuardarUsuarios",
+                              "0",
+                              ex.Message);*/
+            }
+            finally
+            {
+                accesoSqlServer.Close();
+            }
+
+            return resultado;
+
+        }
+
+        public DataTable CargarClientes()
+        {
+            String query = String.Empty;
+            DataTable dtClientes;
+
+            try
+            {
+                dtClientes = new DataTable();
+                query = $"EXEC prueba.dbo.proc_cargarClientes";
+
+                if (accesoSqlServer.Open())
+                {
+                    dtClientes = accesoSqlServer.ExecuteDataTable(query);
+                 
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                dtClientes = null;
+                MessageBox.Show("Error al consultar usuarios",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                //Error.Guardar(accesoSqlServer.SqlConexion,
+                //              "MAPER001",
+                //              "AsignarUsuarioDAL",
+                //              "ConsultarUsuarios",
+                //              "proc_MaPer001CargaCatalogos",
+                //              "0",
+                //              ex.Message);
+            }
+            finally
+            {
+                accesoSqlServer.Close();
+            }
+
+            return dtClientes;
+        }
+
+        public DataTable llenarCliente(int codigo)
+        {
+            String query = String.Empty;
+            DataTable dtClientes;
+
+            try
+            {
+                dtClientes = new DataTable();
+                query = $"EXEC prueba.dbo.proc_BuscarDatosCliente  @codigo = {codigo}";
+
+                if (accesoSqlServer.Open())
+                {
+                    dtClientes = accesoSqlServer.ExecuteDataTable(query);
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                dtClientes = null;
+                MessageBox.Show("Error al consultar usuarios",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                //Error.Guardar(accesoSqlServer.SqlConexion,
+                //              "MAPER001",
+                //              "AsignarUsuarioDAL",
+                //              "ConsultarUsuarios",
+                //              "proc_MaPer001CargaCatalogos",
+                //              "0",
+                //              ex.Message);
+            }
+            finally
+            {
+                accesoSqlServer.Close();
+            }
+
+            return dtClientes;
+        }
+
 
 
     }

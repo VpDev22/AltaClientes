@@ -22,8 +22,13 @@ namespace AltaClientes
             set { Program.cadenaConexionSqlServer = value; }
         }
 
-    
 
+        private static String codigo;
+
+        public static string Codigo {
+            get { return Program.codigo; }
+            set { Program.codigo = value; } 
+        }
 
 
 
@@ -41,14 +46,16 @@ namespace AltaClientes
             try
             {
                 frmAltaClientes FrmAltaClientes = new frmAltaClientes();
+           
+
                 cadenaConexionSqlServer = "server=MOV-230542-9015\\SQLEXPRESS ; database=prueba ; integrated security = true";
 
 
                 if (cadenaConexionSqlServer.VerificaConexion())
                 {
                     FrmAltaClientes.ShowDialog();
-                   
 
+                        
                 }
             }
             catch (Exception ex)
