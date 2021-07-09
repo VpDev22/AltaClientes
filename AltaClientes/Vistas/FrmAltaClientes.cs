@@ -22,9 +22,6 @@ namespace AltaClientes
         public frmAltaClientes()
         {
             InitializeComponent();
-
-           
-
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -75,8 +72,6 @@ namespace AltaClientes
                 int numinterior = int.Parse(txtNumCasa.Text);
                 string estatus = cboEstatus.Text;
 
-
-
                 try
                 {
                     if (altaclientesviewmodel.GuardarCliente(num, nombre, telefono, fechanac, domicilio, numinterior, estatus))
@@ -125,8 +120,8 @@ namespace AltaClientes
         //Dictionary<string, int> integers = new Dictionary<string, int>();
         private void frmAltaClientes_Load(object sender, EventArgs e)
         {
-
-            deshabilita();
+            btnGuardar.Enabled = false;
+           
             altaclientesviewmodel = new AltaClientesViewModel();
             cboAccion.Items.Add("Guardar");
             cboAccion.Items.Add("Modificar");
@@ -160,13 +155,20 @@ namespace AltaClientes
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            Limpiar();
-            deshabilita();
+            if (MessageBox.Show("¿Desea realizar una nueva consulta?",
+                "Limpiar",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Limpiar();
+                btnGuardar.Enabled = false;
+            }
+      
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             buscar();
+           
         }
 
         public void buscar()
@@ -199,7 +201,6 @@ namespace AltaClientes
                     this.dtpFechaNacimiento.Text = fec;
                     this.cboEstatus.Text = opcac;
                 }
-
             }
             else
             {
@@ -212,20 +213,20 @@ namespace AltaClientes
 
         private void cboAccion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int indice = cboAccion.SelectedIndex;
+            //int indice = cboAccion.SelectedIndex;
 
             if (cboAccion.Text == "Guardar")
             {
-
-                habilitaGuardar();
-               
+                txtCodigo.Enabled = false;
+                btnGuardar.Enabled = true;
                 txtCodigo.Text = NumeroSiguiente().ToString();
                 Limpiar1();
             }
             else
             {
                 Limpiar();
-                habilitaModificar();
+                btnGuardar.Enabled = true; ;
+
             }
         }
 
@@ -270,43 +271,6 @@ namespace AltaClientes
                 MessageBox.Show("Ingrese solo números");
                 return;
             }
-        }
-
-    public void habilitaGuardar()
-        {
-            txtCodigo.Enabled = false;
-            txtDomicilio.Enabled = true;
-            txtNombre.Enabled = true;
-            txtNumCasa.Enabled = true;
-            cboEstatus.Enabled = true;
-            dtpFechaNacimiento.Enabled = true;
-            btnBuscar.Enabled = false;
-            btnGuardar.Enabled = true;
-            txtTelefono.Enabled = true;
-        }
-        public void habilitaModificar()
-        {
-            txtCodigo.Enabled = false;
-            txtDomicilio.Enabled = true;
-            txtNombre.Enabled = true;
-            txtNumCasa.Enabled = true;
-            cboEstatus.Enabled = true;
-            dtpFechaNacimiento.Enabled = true;
-            btnBuscar.Enabled = true;
-            btnGuardar.Enabled = true;
-            txtTelefono.Enabled = true;
-        }
-        public void deshabilita()
-        {
-            txtCodigo.Enabled = false;
-            txtDomicilio.Enabled = false;
-            txtNombre.Enabled = false;
-            txtNumCasa.Enabled = false;
-            cboEstatus.Enabled = false;
-            dtpFechaNacimiento.Enabled = false;
-            btnBuscar.Enabled = false;
-            btnGuardar.Enabled = false;
-            txtTelefono.Enabled = false;
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
