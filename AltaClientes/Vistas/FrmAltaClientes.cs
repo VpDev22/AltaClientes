@@ -186,31 +186,7 @@ namespace AltaClientes
 
 
         }
-
-        public void inicioGuardar()
-        {
-            txtNombre.Enabled = true;
-            txtNumCasa.Enabled = true;
-            txtTelefono.Enabled = true;
-            txtDomicilio.Enabled = true;
-            txtNumCasa.Enabled = true;
-            cboEstatus.Enabled = true;
-            dtpFechaNacimiento.Enabled = true;
-            btnGuardar.Enabled = true;
-            txtCodigo.Enabled = false;
-            CargarEstatus();
-
-
-        }
-
-        public void inicioModificar()
-        {
-            btnBuscar.Enabled = true;
-          
-            CargarEstatus();
-
-
-        }
+        
 
         public void CodigoSiguiente() {
 
@@ -230,15 +206,36 @@ namespace AltaClientes
 
             if (cboAccion.Text == "Guardar")
             {
-                inicioGuardar();
+                
                 CodigoSiguiente();
                 Limpiar1();
+                txtNombre.Enabled = true;
+                txtNumCasa.Enabled = true;
+                txtTelefono.Enabled = true;
+                txtDomicilio.Enabled = true;
+                txtNumCasa.Enabled = true;
+                cboEstatus.Enabled = true;
+                dtpFechaNacimiento.Enabled = true;
+                btnGuardar.Enabled = true;
+                txtCodigo.Enabled = false;
+                CargarEstatus();
+                txtNombre.Focus();
+
             }
             else
             {
-                inicioModificar();
                 Limpiar();
-                ;
+                btnBuscar.Enabled = true;
+                txtCodigo.Enabled = false;
+                txtNombre.Enabled = true;
+                txtTelefono.Enabled = true;
+                dtpFechaNacimiento.Enabled = true;
+                txtDomicilio.Enabled = true;
+                txtNumCasa.Enabled = true;
+                cboEstatus.Enabled = true;
+                btnGuardar.Enabled = true;
+                btnBuscar.Focus();
+                CargarEstatus();
 
             }
         }
