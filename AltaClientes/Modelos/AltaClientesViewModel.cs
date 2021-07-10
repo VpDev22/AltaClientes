@@ -51,8 +51,26 @@ namespace AltaClientes.Modelos
             resultado = altaclientesDAL.GuardarCliente(num, nombre, telefono, fechanac, domicilio, numeroint, estatus);
             return resultado;
         }
-       
-       
+
+        public DataTable ultimoCodigo()
+        {
+            DataTable dtultimoCodigo;
+
+            dtultimoCodigo = altaclientesDAL.ultimoCodigo();
+
+            return dtultimoCodigo;
+        }
+
+        public DataTable cargarEstatus()
+        {
+            DataTable dtcargarEstatus;
+
+            dtcargarEstatus = altaclientesDAL.CargarEstatus();
+
+            return dtcargarEstatus;
+        }
+
+
         #endregion Métodos públicos   
     }
 }

@@ -79,7 +79,8 @@ namespace AltaClientes.AcessoDatos
             return resultado;
 
         }
-       
+
+        
         public DataTable CargarClientes()
         {
             String query = String.Empty;
@@ -114,6 +115,82 @@ namespace AltaClientes.AcessoDatos
             }
 
             return dtUsuarios;
+        }
+
+
+
+        public DataTable CargarEstatus()
+        {
+            String query = String.Empty;
+            DataTable dtEstatus;
+
+            try
+            {
+                dtEstatus = new DataTable();
+                query = "SELECT [id],[descripcion] FROM[prueba].[dbo].[estatus]";
+
+                if (accesoSqlServer.Open())
+                {
+                    dtEstatus = accesoSqlServer.ExecuteDataTable(query);
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                dtEstatus = null;
+                MessageBox.Show("Error al cargar clientes",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+
+            }
+            finally
+            {
+                accesoSqlServer.Close();
+            }
+
+            return dtEstatus;
+        }
+
+        public DataTable ultimoCodigo() {
+
+            String query = String.Empty;
+            DataTable dtUltimoCodigo;
+
+            try
+            {
+                dtUltimoCodigo = new DataTable();
+                query = "EXEC prueba.dbo.proc_ultimoCodigo";
+
+                if (accesoSqlServer.Open())
+                {
+                    dtUltimoCodigo = accesoSqlServer.ExecuteDataTable(query);
+
+                    
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                dtUltimoCodigo = null;
+                MessageBox.Show("Error al cargar codigo",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+
+            }
+            finally
+            {
+                accesoSqlServer.Close();
+            }
+
+            return dtUltimoCodigo;
         }
        
 

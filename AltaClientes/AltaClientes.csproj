@@ -49,6 +49,8 @@
     <Compile Include="AcessoDatos\AltaClientesDAL.cs" />
     <Compile Include="Clases\AccesoSqlServer.cs" />
     <Compile Include="Clases\Extensores.cs" />
+    <Compile Include="Clases\Notificacionbase.cs" />
+    <Compile Include="Entidades\ComboBoxAlta.cs" />
     <Compile Include="FrmBuscar.cs">
       <SubType>Form</SubType>
     </Compile>

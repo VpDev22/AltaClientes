@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AltaClientes.AcessoDatos;
+using AltaClientes.Entidades;
 using AltaClientes.Modelos;
 
 
@@ -66,11 +67,12 @@ namespace AltaClientes
 
                 int num = int.Parse(txtCodigo.Text);
                 string nombre = txtNombre.Text;
-                string telefono = txtTelefono.Text;
+                string telefono = Convert.ToString(txtTelefono.Text).Replace("-", string.Empty);
                 string fechanac = dtpFechaNacimiento.Value.ToString("yyyy/MM/dd");
                 string domicilio = txtDomicilio.Text;
                 int numinterior = int.Parse(txtNumCasa.Text);
-                string estatus = cboEstatus.Text;
+                string estatus = cboEstatus.SelectedValue.ToString();
+                MessageBox.Show(estatus);
 
                 try
                 {
@@ -90,63 +92,20 @@ namespace AltaClientes
                 //}
             }
         }
-        public int NumeroSiguiente()
-        {
-            SqlConnection cnn = new SqlConnection(Program.CadenaConexionSqlServer);
-            SqlCommand cmd = new SqlCommand("Select max(num_cliente) from cat_clientes");
-            cmd.Connection = cnn;
-            try
-            {
-                cnn.Open();
-                object res = cmd.ExecuteScalar();
-                if (res == System.DBNull.Value)
-                    return 0;
-                else
-                {
-                    return Convert.ToInt32(res) + 1;
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error:" + ex.Message);
-            }
-            finally
-            {
-                cnn.Close();
-            }
-            return 0;
-        }
-
-        //Dictionary<string, int> integers = new Dictionary<string, int>();
+        
         private void frmAltaClientes_Load(object sender, EventArgs e)
         {
-            btnGuardar.Enabled = false;
-           
+            inicio();
             altaclientesviewmodel = new AltaClientesViewModel();
             cboAccion.Items.Add("Guardar");
             cboAccion.Items.Add("Modificar");
-            //integers.Add(Text = "Activo", value: 1);
-            //integers.Add(Text = "Inactivo", value: 0);
+            
             cboEstatus.Items.Add("1");
             cboEstatus.Items.Add("0");
-
-            //var itemList = new List<Item>()
-            //    {
-            //        new Item() { Text = "Activo", Value = 1 },
-            //        new Item() { Text = "Inactivo", Value = 0 }
-            //    };
-
-            //cboEstatus.DataSource = itemList;
-            //cboEstatus.DisplayMember = "Text";
-            //cboEstatus.ValueMember = "Value";
+            
         }
 
-        //public class Item
-        //{
-        //    public int Value { get; set; }
-        //    public string Text { get; set; }
-        //}
-
+      
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Guardar();
@@ -211,47 +170,109 @@ namespace AltaClientes
             }
         }
 
+        public void inicio()
+        {
+            txtCodigo.Enabled = false;
+            txtNombre.Enabled = false;
+            txtNumCasa.Enabled = false;
+            txtTelefono.Enabled = false;
+            txtDomicilio.Enabled = false;
+            txtNumCasa.Enabled = false;
+            cboEstatus.Enabled = false;
+            dtpFechaNacimiento.Enabled = false;
+            btnGuardar.Enabled = false;
+            btnBuscar.Enabled = false;
+
+
+
+        }
+
+        public void inicioGuardar()
+        {
+            txtNombre.Enabled = true;
+            txtNumCasa.Enabled = true;
+            txtTelefono.Enabled = true;
+            txtDomicilio.Enabled = true;
+            txtNumCasa.Enabled = true;
+            cboEstatus.Enabled = true;
+            dtpFechaNacimiento.Enabled = true;
+            btnGuardar.Enabled = true;
+            txtCodigo.Enabled = false;
+            CargarEstatus();
+
+
+        }
+
+        public void inicioModificar()
+        {
+            btnBuscar.Enabled = true;
+          
+            CargarEstatus();
+
+
+        }
+
+        public void CodigoSiguiente() {
+
+            DataTable dtultimoCodigo;
+            dtultimoCodigo = altaclientesviewmodel.ultimoCodigo();
+
+
+            string codigo = dtultimoCodigo.Rows[0]["numeroCliente"].ToString();
+            txtCodigo.Text = codigo;
+           
+
+        }
+
         private void cboAccion_SelectedIndexChanged(object sender, EventArgs e)
         {
             //int indice = cboAccion.SelectedIndex;
 
             if (cboAccion.Text == "Guardar")
             {
-                txtCodigo.Enabled = false;
-                btnGuardar.Enabled = true;
-                txtCodigo.Text = NumeroSiguiente().ToString();
+                inicioGuardar();
+                CodigoSiguiente();
                 Limpiar1();
             }
             else
             {
+                inicioModificar();
                 Limpiar();
-                btnGuardar.Enabled = true; ;
+                ;
 
             }
         }
-
-        private void cboEstatus_SelectedIndexChanged(object sender, EventArgs e)
+        private Boolean CargarEstatus()
         {
-            //if (cboEstatus.SelectedItem != null)
-            //{
-            //    var item = (Item)cboEstatus.SelectedItem;
-            //    MessageBox.Show($"{item.Text} - {item.Value}");
-            //}
-            //int intValue = integers[(string)cboEstatus.SelectedItem];
-            if (cboEstatus.Text == "1")
+            Boolean resultado = false;
+            DataTable dtEstatus;
+            List<ComboBoxAlta> listaEstatus = new List<ComboBoxAlta>();
+
+            dtEstatus = altaclientesviewmodel.cargarEstatus();
+
+            if (dtEstatus != null)
             {
-                cboEstatus.Text = "Activo";
 
+                foreach (DataRow dtRow in dtEstatus.Rows)
+                {
+                    listaEstatus.Add(new ComboBoxAlta
+                    {
+                        ID = dtRow[0].ToString().Trim(),
+                        Descripcion = dtRow[1].ToString().Trim(),
+                    });
+                }
 
+                cboEstatus.DataSource = listaEstatus;
+                cboEstatus.ValueMember = "ID";
+                cboEstatus.DisplayMember = "Descripcion";
+                cboEstatus.SelectedIndex = -1;
+                resultado = true;
             }
-            else if (cboEstatus.Text == "0")
-            {
-                cboEstatus.Text = "Inactivo";
 
-            }
-
-
+            return resultado;
         }
+
+
 
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -281,6 +302,10 @@ namespace AltaClientes
                 MessageBox.Show("Ingrese solo letra");
                 return;
             }
+        }
+
+        private void cboEstatus_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
         }
     }
 }
