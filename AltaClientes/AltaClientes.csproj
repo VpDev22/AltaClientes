@@ -51,10 +51,11 @@
     <Compile Include="Clases\Extensores.cs" />
     <Compile Include="Clases\Notificacionbase.cs" />
     <Compile Include="Entidades\ComboBoxAlta.cs" />
-    <Compile Include="FrmBuscar.cs">
+    <Compile Include="Entidades\Enumeradores.cs" />
+    <Compile Include="Vistas\FrmBuscar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmBuscar.Designer.cs">
+    <Compile Include="Vistas\FrmBuscar.Designer.cs">
       <DependentUpon>FrmBuscar.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelos\AltaClientesViewModel.cs" />
@@ -71,7 +72,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmBuscar.resx">
+    <EmbeddedResource Include="Vistas\FrmBuscar.resx">
       <DependentUpon>FrmBuscar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmAltaClientes.resx">

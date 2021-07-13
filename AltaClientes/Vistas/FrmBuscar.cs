@@ -62,7 +62,7 @@ namespace AltaClientes
                                                  dtRow["telefono"].ToString().ToUpper(),
                                                  dtRow["num_interior"].ToString().ToUpper(),
                                                  dtRow["fec_nacimiento"].ToString().ToUpper(),
-                                                 dtRow["opc_activo"].ToString().ToUpper());
+                                                 dtRow["descripcion"].ToString().ToUpper());
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace AltaClientes
                                                  dtRow["telefono"].ToString().ToUpper(),
                                                  dtRow["num_interior"].ToString().ToUpper(),
                                                  dtRow["fec_nacimiento"].ToString().ToUpper(),
-                                                 dtRow["opc_activo"].ToString().ToUpper());
+                                                 dtRow["descripcion"].ToString().ToUpper());
                 }
 
                 resultado = true;
