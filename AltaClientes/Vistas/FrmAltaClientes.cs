@@ -317,17 +317,17 @@ namespace AltaClientes
                 case Controles.TB_TELEFONO:
 
                    
-                    string texto1 = txtTelefono.Text;
-                    texto1 = texto1.Replace(" ", String.Empty);
-                    string texto = "   -   -    ";
-                    texto = texto.Replace(" ", String.Empty);
+                    string tbtelefono = txtTelefono.Text;
+                    tbtelefono = tbtelefono.Replace(" ", String.Empty);
+                    string telefonoinvalido = "   -   -    ";
+                    telefonoinvalido = telefonoinvalido.Replace(" ", String.Empty);
 
 
-                    if ( texto == texto1 )
-                    {
+                    if ( telefonoinvalido == tbtelefono | tbtelefono.Length < 12)
+                    { 
                         toolTip = new ToolTip();
                         toolTip.ToolTipIcon = ToolTipIcon.Info;
-                        toolTip.Show("Ingrese numero telefonico", txtTelefono, 1100);
+                        toolTip.Show("Numero telefonico invalido", txtTelefono, 1100);
                         txtTelefono.Focus();
                         txtDomicilio.ForeColor = Color.DarkRed;
                         regresa = false;
@@ -342,6 +342,9 @@ namespace AltaClientes
 
                 case Controles.TB_DOMICILIO:
                     {
+
+                       
+
                         if (String.IsNullOrWhiteSpace(txtDomicilio.Text))
                         {
                             toolTip = new ToolTip();
@@ -379,7 +382,7 @@ namespace AltaClientes
                     }
                     else
                     {
-                        dtpFechaNacimiento.CalendarForeColor = Color.Green;
+                        dtpFechaNacimiento.ForeColor = Color.Green;
 
                     }
 
@@ -387,11 +390,14 @@ namespace AltaClientes
 
                 case Controles.TB_INTERIOR:
                     {
-                        if (String.IsNullOrWhiteSpace(txtDomicilio.Text))
+                        string numerocasa = txtNumCasa.Text;
+                        numerocasa = numerocasa.Replace("-", String.Empty);
+
+                        if (String.IsNullOrWhiteSpace(numerocasa.ToString()))
                         {
                             toolTip = new ToolTip();
                             toolTip.ToolTipIcon = ToolTipIcon.Info;
-                            toolTip.Show("Ingrese domicilio", txtNumCasa, 1100);
+                            toolTip.Show("Ingrese numero de casa", txtNumCasa, 1100);
                             txtNumCasa.Focus();
                             txtNumCasa.ForeColor = Color.DarkRed;
                             regresa = false;
@@ -402,6 +408,23 @@ namespace AltaClientes
 
                         }
                     }
+                    break;
+
+                case Controles.CB_ESTATUS:
+                    {
+                        if (string.IsNullOrEmpty(cboEstatus.Text))
+                        {
+                            toolTip = new ToolTip();
+                            toolTip.ToolTipIcon = ToolTipIcon.Info;
+                            toolTip.Show("Seleccione un estatus", cboEstatus, 1100);
+                            cboEstatus.Focus();
+                            cboEstatus.ForeColor = Color.DarkRed;
+                            regresa = false;
+                        }
+
+
+                    }
+
                     break;
 
 

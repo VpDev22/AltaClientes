@@ -236,6 +236,7 @@
             this.txtTelefono.Location = new System.Drawing.Point(184, 115);
             this.txtTelefono.Mask = "000-000-0000";
             this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.PromptChar = ' ';
             this.txtTelefono.Size = new System.Drawing.Size(108, 22);
             this.txtTelefono.TabIndex = 4;
             // 
@@ -244,6 +245,7 @@
             this.txtNumCasa.Location = new System.Drawing.Point(185, 199);
             this.txtNumCasa.Mask = "99999";
             this.txtNumCasa.Name = "txtNumCasa";
+            this.txtNumCasa.PromptChar = ' ';
             this.txtNumCasa.Size = new System.Drawing.Size(42, 22);
             this.txtNumCasa.TabIndex = 7;
             this.txtNumCasa.ValidatingType = typeof(int);

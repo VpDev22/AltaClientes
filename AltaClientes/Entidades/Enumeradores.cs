@@ -14,6 +14,7 @@ namespace AltaClientes.Entidades
         DTP_FECHANACIMIENTO = 2,
         TB_DOMICILIO = 3,
         TB_INTERIOR = 4,
-        TODOS = 5
+        CB_ESTATUS = 5,
+        TODOS = 6
     }
 }
